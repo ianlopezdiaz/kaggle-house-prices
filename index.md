@@ -1,9 +1,23 @@
-# Kaggle House Prices
+# House Prices: End-to-End Regression Case Study
 
-This is my attempt at the famous Kaggle competition dataset
-[House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
+This project demonstrates a complete machine learning workflow using the famous
+[Kaggle House Prices dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
+The objective is to predict residential property prices from structured tabular data
+while showcasing the techniques commonly used in real-world regression problems.
 
-The goal of this tutorial is to walk through a complete regression workflow on a real Kaggle dataset: from exploratory data analysis, through data cleaning and feature engineering, to building models and creating a submission file.
+The analysis covers:
+
+- Exploratory data analysis
+- Data cleaning
+- Feature engineering
+- Model development
+- Cross-validation
+- Performance evaluation
+- Kaggle submission generation
+
+Whether you are learning machine learning or reviewing my portfolio, this
+project provides a transparent, reproducible example of building regression
+models on a real dataset.
 
 For installation, environment setup, and project structure, see the repository’s [README](README.md).
 
@@ -26,4 +40,4 @@ Understand the problem, inspect the raw data, and build intuition about which fe
 Handle missing values, encode categorical variables, transform skewed features, and prepare a modeling-ready dataset.
 
 ### 3. **[Modeling, evaluation, and submission](3_modeling.ipynb)**
-Train baseline and more advanced models, evaluate them with appropriate metrics, and generate a Kaggle submission file.
+Train baseline and more advanced models, evaluate thir performance with appropriate metrics, and generate a Kaggle submission file.
