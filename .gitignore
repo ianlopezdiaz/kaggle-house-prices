@@ -2,4 +2,4 @@
 **/*.quarto_ipynb
 
 *.code-workspace
-note.md
+ignore/*
