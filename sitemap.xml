@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/1_EDA.html</loc>
+    <lastmod>2026-06-03T02:29:53.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/3_modeling.html</loc>
+    <lastmod>2026-06-03T02:29:53.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/notes.html</loc>
+    <lastmod>2026-06-03T02:29:53.234Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/index.html</loc>
+    <lastmod>2026-06-03T02:29:53.234Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/2_feature_engineering.html</loc>
+    <lastmod>2026-06-03T02:29:53.216Z</lastmod>
+  </url>
+</urlset>
