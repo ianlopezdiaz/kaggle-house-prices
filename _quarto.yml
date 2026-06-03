@@ -18,7 +18,7 @@ website:
         href: 3_modeling.ipynb
     right:
       - icon: github
-        href: https://ianlopezdiaz.github.io/gh-page-from-jupyter-notebook
+        href: https://ianlopezdiaz.github.io/portfolio
   page-footer:
     left: "© 2026 ianlopezdiaz"
     right: "Built with [Quarto](https://quarto.org/)"
