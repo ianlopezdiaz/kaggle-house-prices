@@ -33,7 +33,7 @@ For installation, environment setup, and project structure, see the repositoryâ€
 
 ## Index
 
-### 1. **[Exploratory data analysis](1_EDA.ipynb)**
+### 1. **[Exploratory data analysis (EDA)](1_EDA.ipynb)**
 Understand the problem, inspect the raw data, and build intuition about which features are related to house prices.
 
 ### 2. **[Data cleaning and feature engineering](2_feature_engineering.ipynb)**

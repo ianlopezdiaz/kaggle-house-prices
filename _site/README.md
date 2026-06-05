@@ -1,7 +1,9 @@
-# Kaggle House Prices
+# House Prices: End-to-End Regression Case Study
 
-My attempt at the famous Kaggle competition dataset
-[House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
+This project demonstrates a complete machine learning workflow using the famous
+[Kaggle House Prices dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
+The objective is to predict residential property prices from structured tabular data
+while showcasing the techniques commonly used in real-world regression problems.
 
 ## About the competition 
 - [Overview](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview)

@@ -10,11 +10,11 @@ website:
     left:
       - text: "Overview"
         href: index.md
-      - text: "Exploratory data analysis"
+      - text: "EDA"
         href: 1_EDA.ipynb
-      - text: "Data cleaning and feature engineering"
+      - text: "Feature engineering"
         href: 2_feature_engineering.ipynb
-      - text: "Modeling, evaluation, and submission"
+      - text: "Modeling"
         href: 3_modeling.ipynb
     right:
       - icon: github
