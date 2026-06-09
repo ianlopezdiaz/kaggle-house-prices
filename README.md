@@ -4,12 +4,11 @@ This project demonstrates a complete machine learning workflow using the famous
 [Kaggle House Prices dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
 The objective is to predict residential property prices from structured tabular data
 while showcasing the techniques commonly used in real-world regression problems.
+Check the site [here](https://ianlopezdiaz.github.io/kaggle-house-prices).
 
 ## About the competition 
 - [Overview](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview)
 - [About the data](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data)
-
-Check the site [here](https://ianlopezdiaz.github.io/kaggle-house-prices).
 
 ---
 
