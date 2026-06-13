@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data cleaning and feature engineering – House Prices: End-to-End Regression Case Study</title>
+<title>Feature Engineering – House Prices: End-to-End Regression Case Study</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,10 +23,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -72,6 +107,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -288,8 +326,38 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#engineered-numerical-features" id="toc-engineered-numerical-features" class="nav-link active" data-scroll-target="#engineered-numerical-features">Engineered numerical features</a>
+  <ul class="collapse">
+  <li><a href="#totalrooms" id="toc-totalrooms" class="nav-link" data-scroll-target="#totalrooms">TotalRooms</a></li>
+  <li><a href="#totalbathrooms" id="toc-totalbathrooms" class="nav-link" data-scroll-target="#totalbathrooms">TotalBathrooms</a></li>
+  <li><a href="#houseage" id="toc-houseage" class="nav-link" data-scroll-target="#houseage">HouseAge</a></li>
+  <li><a href="#yearssinceremodel" id="toc-yearssinceremodel" class="nav-link" data-scroll-target="#yearssinceremodel">YearsSinceRemodel</a></li>
+  <li><a href="#totalarea" id="toc-totalarea" class="nav-link" data-scroll-target="#totalarea">TotalArea</a></li>
+  <li><a href="#garageage" id="toc-garageage" class="nav-link" data-scroll-target="#garageage">GarageAge</a></li>
+  <li><a href="#totalporcharea" id="toc-totalporcharea" class="nav-link" data-scroll-target="#totalporcharea">TotalPorchArea</a></li>
+  <li><a href="#qualityarea" id="toc-qualityarea" class="nav-link" data-scroll-target="#qualityarea">QualityArea</a></li>
+  <li><a href="#totalqualityscore" id="toc-totalqualityscore" class="nav-link" data-scroll-target="#totalqualityscore">TotalQualityScore</a></li>
+  <li><a href="#luxuryfeaturecount" id="toc-luxuryfeaturecount" class="nav-link" data-scroll-target="#luxuryfeaturecount">LuxuryFeatureCount</a></li>
+  <li><a href="#garageareapercar" id="toc-garageareapercar" class="nav-link" data-scroll-target="#garageareapercar">GarageAreaPerCar</a></li>
+  <li><a href="#livingareaperroom" id="toc-livingareaperroom" class="nav-link" data-scroll-target="#livingareaperroom">LivingAreaPerRoom</a></li>
+  </ul></li>
+  <li><a href="#binary-indicator-features" id="toc-binary-indicator-features" class="nav-link" data-scroll-target="#binary-indicator-features">Binary indicator features</a>
+  <ul class="collapse">
+  <li><a href="#isremodeled" id="toc-isremodeled" class="nav-link" data-scroll-target="#isremodeled">IsRemodeled</a></li>
+  <li><a href="#haspool" id="toc-haspool" class="nav-link" data-scroll-target="#haspool">HasPool</a></li>
+  <li><a href="#hasgarage" id="toc-hasgarage" class="nav-link" data-scroll-target="#hasgarage">HasGarage</a></li>
+  <li><a href="#hasbasement" id="toc-hasbasement" class="nav-link" data-scroll-target="#hasbasement">HasBasement</a></li>
+  <li><a href="#hasfireplace" id="toc-hasfireplace" class="nav-link" data-scroll-target="#hasfireplace">HasFireplace</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#save-the-engineered-dataset" id="toc-save-the-engineered-dataset" class="nav-link" data-scroll-target="#save-the-engineered-dataset">Save the engineered dataset</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -297,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data cleaning and feature engineering</h1>
+<h1 class="title">Feature Engineering</h1>
 </div>
 
 
@@ -314,8 +382,599 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The exploratory analysis revealed several features that are strongly associated with house prices, as well as groups of variables that describe related aspects of a property. In this notebook, we leverage this information to create new features that may help machine learning models capture important patterns in the data.</p>
+<p>Feature engineering is the process of transforming existing variables into new representations that better reflect the underlying factors influencing the target variable. By combining related features, aggregating information, and creating meaningful indicators, we can often provide models with a more informative view of the problem than the raw data alone.</p>
+<p>The features introduced in this notebook are motivated by simple domain knowledge about residential properties. In general, buyers tend to care about factors such as total living space, property age, overall quality, available amenities, and the amount of usable space dedicated to specific purposes. The engineered features below aim to capture these concepts more directly.</p>
+<p>Before creating new features, we first load the processed dataset generated in the previous notebook. This dataset already includes the missing-value handling and data quality corrections identified during the exploratory data analysis stage.</p>
+<p>We then import the libraries required for feature engineering and subsequent preprocessing steps.</p>
+<div id="cell-2" class="cell" data-execution_count="68">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sns.set_theme()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data processed and saved in the EDA notebook</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_full <span class="op">=</span> pd.read_parquet(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"processed_data/eda.parquet"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Id</th>
+<th data-quarto-table-cell-role="th">MSSubClass</th>
+<th data-quarto-table-cell-role="th">MSZoning</th>
+<th data-quarto-table-cell-role="th">LotFrontage</th>
+<th data-quarto-table-cell-role="th">LotArea</th>
+<th data-quarto-table-cell-role="th">Street</th>
+<th data-quarto-table-cell-role="th">Alley</th>
+<th data-quarto-table-cell-role="th">LotShape</th>
+<th data-quarto-table-cell-role="th">LandContour</th>
+<th data-quarto-table-cell-role="th">Utilities</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">PoolQC</th>
+<th data-quarto-table-cell-role="th">Fence</th>
+<th data-quarto-table-cell-role="th">MiscFeature</th>
+<th data-quarto-table-cell-role="th">MiscVal</th>
+<th data-quarto-table-cell-role="th">MoSold</th>
+<th data-quarto-table-cell-role="th">YrSold</th>
+<th data-quarto-table-cell-role="th">SaleType</th>
+<th data-quarto-table-cell-role="th">SaleCondition</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">IsTrainSet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>60</td>
+<td>RL</td>
+<td>65.0</td>
+<td>8450</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>2</td>
+<td>2008</td>
+<td>WD</td>
+<td>Normal</td>
+<td>208500.0</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>20</td>
+<td>RL</td>
+<td>80.0</td>
+<td>9600</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>5</td>
+<td>2007</td>
+<td>WD</td>
+<td>Normal</td>
+<td>181500.0</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>60</td>
+<td>RL</td>
+<td>68.0</td>
+<td>11250</td>
+<td>Pave</td>
+<td>None</td>
+<td>IR1</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>9</td>
+<td>2008</td>
+<td>WD</td>
+<td>Normal</td>
+<td>223500.0</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>70</td>
+<td>RL</td>
+<td>60.0</td>
+<td>9550</td>
+<td>Pave</td>
+<td>None</td>
+<td>IR1</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>2</td>
+<td>2006</td>
+<td>WD</td>
+<td>Abnorml</td>
+<td>140000.0</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>60</td>
+<td>RL</td>
+<td>84.0</td>
+<td>14260</td>
+<td>Pave</td>
+<td>None</td>
+<td>IR1</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>12</td>
+<td>2008</td>
+<td>WD</td>
+<td>Normal</td>
+<td>250000.0</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2914</th>
+<td>2915</td>
+<td>160</td>
+<td>RM</td>
+<td>21.0</td>
+<td>1936</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>6</td>
+<td>2006</td>
+<td>WD</td>
+<td>Normal</td>
+<td>NaN</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2915</th>
+<td>2916</td>
+<td>160</td>
+<td>RM</td>
+<td>21.0</td>
+<td>1894</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>4</td>
+<td>2006</td>
+<td>WD</td>
+<td>Abnorml</td>
+<td>NaN</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2916</th>
+<td>2917</td>
+<td>20</td>
+<td>RL</td>
+<td>160.0</td>
+<td>20000</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>9</td>
+<td>2006</td>
+<td>WD</td>
+<td>Abnorml</td>
+<td>NaN</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2917</th>
+<td>2918</td>
+<td>85</td>
+<td>RL</td>
+<td>62.0</td>
+<td>10441</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>MnPrv</td>
+<td>Shed</td>
+<td>700</td>
+<td>7</td>
+<td>2006</td>
+<td>WD</td>
+<td>Normal</td>
+<td>NaN</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2918</th>
+<td>2919</td>
+<td>60</td>
+<td>RL</td>
+<td>74.0</td>
+<td>9627</td>
+<td>Pave</td>
+<td>None</td>
+<td>Reg</td>
+<td>Lvl</td>
+<td>AllPub</td>
+<td>...</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>0</td>
+<td>11</td>
+<td>2006</td>
+<td>WD</td>
+<td>Normal</td>
+<td>NaN</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+
+<p>2919 rows × 82 columns</p>
+</div>
+</div>
+</div>
+<section id="engineered-numerical-features" class="level2">
+<h2 class="anchored" data-anchor-id="engineered-numerical-features">Engineered numerical features</h2>
+<section id="totalrooms" class="level3">
+<h3 class="anchored" data-anchor-id="totalrooms">TotalRooms</h3>
+<p>The total number of rooms is often more informative than the individual room counts alone. This feature attempts to capture the overall functional capacity of the house.</p>
+<div id="cell-5" class="cell" data-execution_count="69">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"TotalRooms"</span>] <span class="op">=</span> (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"TotRmsAbvGrd"</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"KitchenAbvGr"</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="totalbathrooms" class="level3">
+<h3 class="anchored" data-anchor-id="totalbathrooms">TotalBathrooms</h3>
+<p>The dataset distributes bathroom information across multiple variables. Combining them into a single measure provides a more complete representation of the property’s sanitary facilities.</p>
+<div id="cell-7" class="cell" data-execution_count="70">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"TotalBathrooms"</span>] <span class="op">=</span> (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"FullBath"</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>df_full[<span class="st">"HalfBath"</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"BsmtFullBath"</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>df_full[<span class="st">"BsmtHalfBath"</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="houseage" class="level3">
+<h3 class="anchored" data-anchor-id="houseage">HouseAge</h3>
+<p>The age of a property at the time of sale is likely to influence its market value. Newer houses often command higher prices due to modern construction standards, lower maintenance requirements, and updated amenities.</p>
+<div id="cell-9" class="cell" data-execution_count="71">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"HouseAge"</span>] <span class="op">=</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"YrSold"</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> df_full[<span class="st">"YearBuilt"</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="yearssinceremodel" class="level3">
+<h3 class="anchored" data-anchor-id="yearssinceremodel">YearsSinceRemodel</h3>
+<p>The original remodeling year provides useful information, but the number of years since the last renovation may be more directly related to a property’s perceived condition and market value.</p>
+<div id="cell-11" class="cell" data-execution_count="72">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"YearsSinceRemodel"</span>] <span class="op">=</span> (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"YrSold"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> df_full[<span class="st">"YearRemodAdd"</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="totalarea" class="level3">
+<h3 class="anchored" data-anchor-id="totalarea">TotalArea</h3>
+<p>The original dataset stores living space across multiple variables corresponding to different levels of the house. While this information is useful, buyers are often interested in the total amount of usable space available. This feature aggregates the main living areas into a single measure of property size.</p>
+<div id="cell-13" class="cell" data-execution_count="73">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"TotalArea"</span>] <span class="op">=</span> (</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"TotalBsmtSF"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"1stFlrSF"</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"2ndFlrSF"</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="garageage" class="level3">
+<h3 class="anchored" data-anchor-id="garageage">GarageAge</h3>
+<p>A newer garage may be more desirable than an older one due to reduced wear and improved construction standards. This feature captures the age of the garage at the time of sale.</p>
+<div id="cell-15" class="cell" data-execution_count="74">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"GarageAge"</span>] <span class="op">=</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"YrSold"</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> df_full[<span class="st">"GarageYrBlt"</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="totalporcharea" class="level3">
+<h3 class="anchored" data-anchor-id="totalporcharea">TotalPorchArea</h3>
+<p>Porches appear in several separate variables depending on their type. This feature aggregates them into a single measure of outdoor living space.</p>
+<div id="cell-17" class="cell" data-execution_count="75">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"TotalPorchArea"</span>] <span class="op">=</span> (</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"OpenPorchSF"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"EnclosedPorch"</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"3SsnPorch"</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"ScreenPorch"</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="qualityarea" class="level3">
+<h3 class="anchored" data-anchor-id="qualityarea">QualityArea</h3>
+<p>Previous analysis showed that both living area and overall quality are strongly associated with sale price. This feature captures the interaction between these variables, allowing the model to distinguish between houses that are large, high-quality, or both. It can be interpreted as a rough measure of quality-adjusted living space.</p>
+<div id="cell-19" class="cell" data-execution_count="76">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"QualityArea"</span>] <span class="op">=</span> (</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"OverallQual"</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> df_full[<span class="st">"GrLivArea"</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="totalqualityscore" class="level3">
+<h3 class="anchored" data-anchor-id="totalqualityscore">TotalQualityScore</h3>
+<p>The overall quality and overall condition ratings describe complementary aspects of a property. Combining them creates a broader measure of the house’s general quality.</p>
+<div id="cell-21" class="cell" data-execution_count="77">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"TotalQualityScore"</span>] <span class="op">=</span> (</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"OverallQual"</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df_full[<span class="st">"OverallCond"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="luxuryfeaturecount" class="level3">
+<h3 class="anchored" data-anchor-id="luxuryfeaturecount">LuxuryFeatureCount</h3>
+<p>This feature counts the number of selected amenities present in a property. While each amenity contributes information individually, combining them into a single feature provides a simple measure of the property’s amenity level.</p>
+<p>The term luxury is used loosely here to refer to features that are commonly associated with larger or more valuable homes. Higher values indicate that a property offers a greater number of these amenities and may therefore command a higher market price.</p>
+<div id="cell-23" class="cell" data-execution_count="78">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"LuxuryFeatureCount"</span>] <span class="op">=</span> (</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    (df_full[<span class="st">"PoolArea"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> (df_full[<span class="st">"GarageArea"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> (df_full[<span class="st">"TotalBsmtSF"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> (df_full[<span class="st">"Fireplaces"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="garageareapercar" class="level3">
+<h3 class="anchored" data-anchor-id="garageareapercar">GarageAreaPerCar</h3>
+<p>The total garage area and the number of vehicle spaces provide complementary information about the garage. By dividing the area by the number of parking spaces, we obtain a rough measure of the amount of space available per vehicle.</p>
+<p>This feature serves as an example of a ratio-based transformation, which can sometimes reveal relationships that are not apparent from the original variables alone. Larger values may indicate more spacious garages with additional storage or workshop space.</p>
+<p>When constructing this feature, care must be taken to avoid division by zero. Properties without a garage have <code>GarageCars = 0</code>, so the ratio is defined as 0 for these observations.</p>
+<div id="cell-25" class="cell" data-execution_count="79">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"GarageAreaPerCar"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"GarageCars"</span>] <span class="op">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"GarageArea"</span>] <span class="op">/</span> df_full[<span class="st">"GarageCars"</span>],</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="livingareaperroom" class="level3">
+<h3 class="anchored" data-anchor-id="livingareaperroom">LivingAreaPerRoom</h3>
+<p>The total above-ground living area and the number of rooms both provide useful information about the size of a house. However, they describe different aspects of the property. Two houses may have the same living area but very different room layouts.</p>
+<p>By dividing the living area by the number of rooms, we obtain a rough measure of the average room size. This ratio may help distinguish between houses with many small rooms and those with fewer, more spacious rooms.</p>
+<p>As with <code>GarageAreaPerCar</code>, or any ratio-based feature, care must be taken to avoid division by zero. In this dataset, all properties have at least one room above ground, but we nevertheless define the ratio as 0 whenever TotRmsAbvGrd is zero for robustness.</p>
+<div id="cell-27" class="cell" data-execution_count="80">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"LivingAreaPerRoom"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"TotRmsAbvGrd"</span>] <span class="op">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"GrLivArea"</span>] <span class="op">/</span> df_full[<span class="st">"TotRmsAbvGrd"</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="binary-indicator-features" class="level2">
+<h2 class="anchored" data-anchor-id="binary-indicator-features">Binary indicator features</h2>
+<p>Several variables naturally describe the presence or absence of a property characteristic. While these variables can be represented as boolean values, converting them to integers (<code>0</code> or <code>1</code>) provides a format that is directly compatible with most machine learning algorithms and simplifies subsequent preprocessing.</p>
+<section id="isremodeled" class="level3">
+<h3 class="anchored" data-anchor-id="isremodeled">IsRemodeled</h3>
+<p>Indicates whether the property has been remodeled since its original construction.</p>
+<div id="cell-30" class="cell" data-execution_count="81">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"IsRemodeled"</span>] <span class="op">=</span> (</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"YearBuilt"</span>] <span class="op">!=</span> df_full[<span class="st">"YearRemodAdd"</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="haspool" class="level3">
+<h3 class="anchored" data-anchor-id="haspool">HasPool</h3>
+<p>Indicates whether the property includes a swimming pool.</p>
+<div id="cell-32" class="cell" data-execution_count="82">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"HasPool"</span>] <span class="op">=</span> (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"PoolArea"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="hasgarage" class="level3">
+<h3 class="anchored" data-anchor-id="hasgarage">HasGarage</h3>
+<p>Indicates whether the property includes a garage.</p>
+<div id="cell-34" class="cell" data-execution_count="83">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"HasGarage"</span>] <span class="op">=</span> (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"GarageArea"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="hasbasement" class="level3">
+<h3 class="anchored" data-anchor-id="hasbasement">HasBasement</h3>
+<p>Indicates whether the property includes a basement.</p>
+<div id="cell-36" class="cell" data-execution_count="84">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"HasBasement"</span>] <span class="op">=</span> (</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"TotalBsmtSF"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="hasfireplace" class="level3">
+<h3 class="anchored" data-anchor-id="hasfireplace">HasFireplace</h3>
+<p>Indicates whether the property includes at least one fireplace.</p>
+<div id="cell-38" class="cell" data-execution_count="85">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"HasFireplace"</span>] <span class="op">=</span> (</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    df_full[<span class="st">"Fireplaces"</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this notebook, we engineered a collection of new features designed to provide a more informative representation of the properties than the raw dataset alone.</p>
+<p>Key additions include:</p>
+<ul>
+<li>Aggregate features such as <code>TotalArea</code>, <code>TotalBathrooms</code>, and <code>TotalPorchArea</code>, which combine related measurements into more comprehensive indicators.</li>
+<li>Time-based features such as <code>HouseAge</code>, <code>YearsSinceRemodel</code>, and <code>GarageAge</code>, which capture the age and renovation history of a property.</li>
+<li>Interaction and ratio features such as <code>QualityArea</code>, <code>GarageAreaPerCar</code>, and <code>LivingAreaPerRoom</code>, which describe relationships between existing variables.</li>
+<li>Binary indicator variables such as <code>HasGarage</code>, <code>HasPool</code>, and <code>IsRemodeled</code>, which explicitly represent the presence or absence of important property characteristics.</li>
+<li>The <code>LuxuryFeatureCount</code> feature, which summarizes several desirable amenities into a single score.</li>
+</ul>
+<p>These engineered features incorporate domain knowledge and may help machine learning models capture patterns that are not immediately apparent from the original variables.</p>
+<p>The dataset is now ready for the final preprocessing steps required for modeling, including the transformation of skewed variables and the encoding of categorical features. In the next notebook, we will prepare the feature matrix, train several regression models, evaluate their performance, and generate a Kaggle submission.</p>
+</section>
+<section id="save-the-engineered-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="save-the-engineered-dataset">Save the engineered dataset</h2>
+<p>The engineered features created in this notebook will be used throughout the modeling stage. To avoid repeating the feature engineering pipeline, we save the resulting dataset to disk.</p>
+<p>The next notebook will load this dataset, perform the remaining preprocessing steps required by the models, and proceed with training and evaluation.</p>
+<div id="cell-40" class="cell" data-execution_count="86">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_full.to_parquet(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"processed_data/engineered.parquet"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
