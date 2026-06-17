@@ -296,15 +296,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./1_EDA.html" aria-current="page"> 
+    <a class="nav-link active" href="./01_EDA.html" aria-current="page"> 
 <span class="menu-text">EDA</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./2_feature_engineering.html"> 
+    <a class="nav-link" href="./02_feature_engineering.html"> 
 <span class="menu-text">Feature engineering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./3_modeling.html"> 
+    <a class="nav-link" href="./03_modeling.html"> 
 <span class="menu-text">Modeling</span></a>
   </li>  
 </ul>
@@ -334,6 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link active" data-scroll-target="#import-libraries">Import libraries</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#understanding-the-target-variable" id="toc-understanding-the-target-variable" class="nav-link" data-scroll-target="#understanding-the-target-variable">Understanding the target variable</a></li>
+  <li><a href="#mapping-the-features" id="toc-mapping-the-features" class="nav-link" data-scroll-target="#mapping-the-features">Mapping the features</a></li>
   <li><a href="#combining-train-and-test-data" id="toc-combining-train-and-test-data" class="nav-link" data-scroll-target="#combining-train-and-test-data">Combining train and test data</a></li>
   <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
   <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
@@ -384,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="import-libraries">Import libraries</h2>
 <p>First, import the libraries used throughout the analysis.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="27">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
@@ -401,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
 <p>The competition provides separate training and test datasets. The training dataset contains the target variable (<code>SalePrice</code>), while the test dataset contains only the predictor variables.</p>
 <p>We load both datasets, inspect their dimensions, check for duplicated rows, check column names etc.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="28">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> pd.read_csv(<span class="st">"data/test.csv"</span>)</span>
@@ -455,12 +456,12 @@ Target variable (only in test):
 </code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-execution_count="29">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_train.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
 
@@ -619,12 +620,12 @@ Target variable (only in test):
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-execution_count="30">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_test.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <div>
 
 
@@ -788,7 +789,7 @@ Target variable (only in test):
 <h2 class="anchored" data-anchor-id="understanding-the-target-variable">Understanding the target variable</h2>
 <p>Apart from the <code>SalePrice</code> column, which is missing from the <code>df_test</code> dataset, the other columns are all the same. The sale price is, of course, our target variable, i.e., the thing we will have to create a model to find out base on the other features.</p>
 <p>Because this is a regression problem, the target variable deserves special attention. Let’s inspect the distribution of house prices.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-execution_count="31">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
@@ -798,77 +799,114 @@ Target variable (only in test):
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>As seen on the histogram above, the target feature <code>SalePrice</code> is right-skewed. In such cases, it is useful to perform a log transformation on this feature. After this transformation, the distribution closer resembles a normal distribution.</p>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="32">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram log</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(np.log1p(df_train.get(<span class="st">"SalePrice"</span>)))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"log(SalePrices)"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"log(1+SalePrices)"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>It is also useful to check for outliers in the house prices.</p>
-<div id="cell-12" class="cell" data-execution_count="7">
+<div id="cell-12" class="cell" data-execution_count="33">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">4</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(df_train[<span class="st">"SalePrice"</span>], orient<span class="op">=</span><span class="st">'h'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(df_train[<span class="st">"SalePrice"</span>], orient<span class="op">=</span><span class="st">"h"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"SalePrice"</span>)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>There are outliers and we will have to deal with them later. Now let’s go for the other features.</p>
 </section>
+<section id="mapping-the-features" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-the-features">Mapping the features</h2>
+<p>The file <a href="data/data_description.txt"><code>data_description.txt</code></a> documents all variables in the dataset. In this section, we extract those descriptions and combine them with information derived from <code>df_train</code> and <code>df_test</code> (such as data type: numerical or categorical) into a single summary dataframe.</p>
+<p>We also introduce a <code>Category</code> field: it is set to <code>"original"</code> for all features that come directly from the Kaggle dataset, and later will assume other values for features created during the feature engineering stage.</p>
+<div id="cell-15" class="cell" data-execution_count="34">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features minus the tareget</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [column <span class="cf">for</span> column <span class="kw">in</span> df_test.columns <span class="cf">if</span> column <span class="kw">not</span> <span class="kw">in</span> (<span class="st">"Id"</span>, <span class="st">"SalePrice"</span>, <span class="st">"IsTrainSet"</span>)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># feature description dataframe</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df_features <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span>: features,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Type"</span>: [<span class="st">"numerical"</span> <span class="cf">if</span> pd.api.types.is_numeric_dtype(df_test[column]) <span class="cf">else</span> <span class="st">"categorical"</span> <span class="cf">for</span> column <span class="kw">in</span> features],</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Category"</span>:[<span class="st">"original"</span>]<span class="op">*</span><span class="bu">len</span>(features),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Source"</span>:features,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Get descriptions from data_description.txt</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/data_description.txt"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>feature_to_description <span class="op">=</span> {}</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature <span class="kw">in</span> features:</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    desc <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scan lines looking for a line that starts with "FeatureName:"</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    prefix <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">:"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> line.strip()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> line.startswith(prefix):</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Take everything after "FeatureName:" as the description</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            desc <span class="op">=</span> line[<span class="bu">len</span>(prefix):].strip()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    feature_to_description[feature] <span class="op">=</span> desc</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>df_features[<span class="st">"Description"</span>] <span class="op">=</span> df_features[<span class="st">"Name"</span>].<span class="bu">map</span>(feature_to_description)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
 <section id="combining-train-and-test-data" class="level2">
 <h2 class="anchored" data-anchor-id="combining-train-and-test-data">Combining train and test data</h2>
 <p>Many preprocessing steps must be applied consistently to both datasets. For exploratory purposes, it is therefore useful to temporarily combine the predictor variables from the training and test sets into a single dataframe.</p>
 <p>The target variable (<code>SalePrice</code>) is excluded because it is only available in the training data.</p>
-<div id="cell-15" class="cell" data-execution_count="8">
+<div id="cell-17" class="cell" data-execution_count="35">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features minus the tareget</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> df_test.columns</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Train/Test split</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df_train[<span class="st">"IsTrainSet"</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df_test[<span class="st">"IsTrainSet"</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>df_full <span class="op">=</span> pd.concat(</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    [df_train, df_test],</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">True</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"""</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ss">    Full dataset ( train + test ):</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>duplicated()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> duplicated rows</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train/Test split</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_train[<span class="st">"IsTrainSet"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_test[<span class="st">"IsTrainSet"</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_full <span class="op">=</span> pd.concat(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    [df_train, df_test],</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">True</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"""</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ss">    Full dataset ( train + test ):</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>duplicated()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> duplicated rows</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>df_full<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>df_features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -879,13 +917,123 @@ Target variable (only in test):
     82 columns
     </code></pre>
 </div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Type</th>
+<th data-quarto-table-cell-role="th">Category</th>
+<th data-quarto-table-cell-role="th">Source</th>
+<th data-quarto-table-cell-role="th">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>MSSubClass</td>
+<td>numerical</td>
+<td>original</td>
+<td>MSSubClass</td>
+<td>Identifies the type of dwelling involved in th...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>MSZoning</td>
+<td>categorical</td>
+<td>original</td>
+<td>MSZoning</td>
+<td>Identifies the general zoning classification o...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>LotFrontage</td>
+<td>numerical</td>
+<td>original</td>
+<td>LotFrontage</td>
+<td>Linear feet of street connected to property</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>LotArea</td>
+<td>numerical</td>
+<td>original</td>
+<td>LotArea</td>
+<td>Lot size in square feet</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Street</td>
+<td>categorical</td>
+<td>original</td>
+<td>Street</td>
+<td>Type of road access to property</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">74</th>
+<td>MiscVal</td>
+<td>numerical</td>
+<td>original</td>
+<td>MiscVal</td>
+<td>$Value of miscellaneous feature</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">75</th>
+<td>MoSold</td>
+<td>numerical</td>
+<td>original</td>
+<td>MoSold</td>
+<td>Month Sold (MM)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">76</th>
+<td>YrSold</td>
+<td>numerical</td>
+<td>original</td>
+<td>YrSold</td>
+<td>Year Sold (YYYY)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">77</th>
+<td>SaleType</td>
+<td>categorical</td>
+<td>original</td>
+<td>SaleType</td>
+<td>Type of sale</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">78</th>
+<td>SaleCondition</td>
+<td>categorical</td>
+<td>original</td>
+<td>SaleCondition</td>
+<td>Condition of sale</td>
+</tr>
+</tbody>
+</table>
+
+<p>79 rows × 5 columns</p>
+</div>
+</div>
 </div>
 <p>In order to start getting a feel for the data we have in our hands, we can use <code>info()</code> and <code>describe()</code> to learn about data types, missing data, and overall statistical metrics such as mean, median, max, min etc. While trying to understand the data, it is also very helpful to look at the <a href="data/data_description.txt"><code>data_description.txt</code></a> file in the <code>data</code> directory of this repository.</p>
-<div id="cell-17" class="cell" data-execution_count="9">
+<div id="cell-19" class="cell" data-execution_count="36">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data types and Non-null counts</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_full.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data types and Non-null counts</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_full.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -979,13 +1127,13 @@ dtypes: bool(1), float64(12), int64(26), object(43)
 memory usage: 1.8+ MB</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="10">
+<div id="cell-20" class="cell" data-execution_count="37">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_full.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_full.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <div>
 
 
@@ -1216,74 +1364,96 @@ memory usage: 1.8+ MB</code></pre>
 </div>
 </div>
 </div>
+<div id="cell-21" class="cell" data-execution_count="38">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerical features from metadata</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>numerical_features <span class="op">=</span> (</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    df_features.loc[</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        df_features[<span class="st">"Type"</span>] <span class="op">==</span> <span class="st">"numerical"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Name"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    .tolist()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>df_numerical <span class="op">=</span> df_full[numerical_features]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorical features from metadata</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>categorical_features <span class="op">=</span> (</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    df_features.loc[</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        df_features[<span class="st">"Type"</span>] <span class="op">==</span> <span class="st">"categorical"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Name"</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    .tolist()</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>df_categorical <span class="op">=</span> df_full[categorical_features]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
 <section id="histograms" class="level2">
 <h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
 <p>As we did for the target variable, we can also look at the distributions for all numerical features.</p>
-<div id="cell-20" class="cell" data-execution_count="11">
+<div id="cell-23" class="cell" data-execution_count="39">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate numerical features except for the target and Train/Test classification</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_numerical <span class="op">=</span> df_full[[column <span class="cf">for</span> column <span class="kw">in</span> df_full.columns <span class="cf">if</span> column <span class="kw">in</span> features]].select_dtypes(exclude<span class="op">=</span>[<span class="st">'object'</span>])</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df_numerical <span class="op">=</span> df_numerical.drop([<span class="st">"Id"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms for all features</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df_numerical.columns</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span>  <span class="co"># adjust as needed</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(cols) <span class="op">/</span> n_cols))</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(n_rows, n_cols, figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows))</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()  <span class="co"># make it 1D for easy indexing</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(cols):</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    sns.histplot(df_numerical[col], ax<span class="op">=</span>axes[i])</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide any unused subplots</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms for all numerical features</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span>  <span class="co"># adjust as needed</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(numerical_features) <span class="op">/</span> n_cols))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(n_rows, n_cols, figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()  <span class="co"># make it 1D for easy indexing</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(numerical_features):</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    sns.histplot(df_numerical[col], ax<span class="op">=</span>axes[i])</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide any unused subplots</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>We can see on the histograms above that several of the features are right-skewed. Similarly to what we did with <code>SalePrice</code>, we will need to perform a log transformation when we get to the modeling stage. However, we will leave the skewness analysis and log transformation for the <a href="./02_feature_engineering.html">feature engineering notebook</a>.</p>
 </section>
 <section id="outliers" class="level2">
 <h2 class="anchored" data-anchor-id="outliers">Outliers</h2>
 <p>As we did for <code>SalePrice</code>, we can check all numerical data for outliers.</p>
-<div id="cell-22" class="cell" data-execution_count="12">
+<div id="cell-26" class="cell" data-execution_count="40">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots for all features</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df_numerical.columns</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span>  <span class="co"># adjust as needed</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(cols) <span class="op">/</span> n_cols))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(n_rows, n_cols, figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows))</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()  <span class="co"># make it 1D for easy indexing</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(cols):</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    sns.boxplot(df_numerical[col], ax<span class="op">=</span>axes[i], orient<span class="op">=</span><span class="st">"h"</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide any unused subplots</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots for all features</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df_numerical.columns</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span>  <span class="co"># adjust as needed</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(numerical_features) <span class="op">/</span> n_cols))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(n_rows, n_cols, figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()  <span class="co"># make it 1D for easy indexing</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(numerical_features):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    sns.boxplot(df_numerical[col], ax<span class="op">=</span>axes[i], orient<span class="op">=</span><span class="st">"h"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide any unused subplots</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1293,18 +1463,18 @@ memory usage: 1.8+ MB</code></pre>
 <section id="missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values">Missing Values</h2>
 <p>Missing data is one of the main challenges in this dataset. I always like to visually inspect how much of the data is missing before proceeding with the analysis.</p>
-<div id="cell-25" class="cell" data-execution_count="13">
+<div id="cell-29" class="cell" data-execution_count="41">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_full.isnull(), cbar <span class="op">=</span> <span class="va">False</span>).set_title(<span class="st">"Missing values heatmap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_full.isnull(), cbar <span class="op">=</span> <span class="va">False</span>).set_title(<span class="st">"Missing values heatmap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>Text(0.5, 1.0, 'Missing values heatmap')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-16-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1316,15 +1486,15 @@ memory usage: 1.8+ MB</code></pre>
 <li><strong>For categorical features:</strong> We will impute missing data with <code>"None"</code> if it represents a missing attribute (e.g., no pool, no garage), or the mode if the data is truly missing at random.</li>
 </ul>
 <p>Let’s start by listing all features in descending order by the amount of missing values.</p>
-<div id="cell-27" class="cell" data-execution_count="25">
+<div id="cell-31" class="cell" data-execution_count="42">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features with missing values</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_missing <span class="op">=</span> df_full[features].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_missing <span class="op">=</span> df_missing.loc[df_missing.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>df_missing</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features with missing values</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_missing <span class="op">=</span> df_full[features].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_missing <span class="op">=</span> df_missing.loc[df_missing.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>df_missing</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>PoolQC          2909
 MiscFeature     2814
 Alley           2721
@@ -1332,49 +1502,48 @@ Fence           2348
 MasVnrType      1766
 FireplaceQu     1420
 LotFrontage      486
-GarageYrBlt      159
 GarageCond       159
 GarageFinish     159
+GarageYrBlt      159
 GarageQual       159
 GarageType       157
-BsmtCond          82
 BsmtExposure      82
+BsmtCond          82
 BsmtQual          81
 BsmtFinType2      80
 BsmtFinType1      79
 MasVnrArea        23
 MSZoning           4
 BsmtHalfBath       2
-Utilities          2
 Functional         2
 BsmtFullBath       2
-BsmtFinSF1         1
+Utilities          2
 Exterior1st        1
 TotalBsmtSF        1
 BsmtUnfSF          1
-BsmtFinSF2         1
+BsmtFinSF1         1
 SaleType           1
 KitchenQual        1
 GarageCars         1
 GarageArea         1
 Electrical         1
 Exterior2nd        1
+BsmtFinSF2         1
 dtype: int64</code></pre>
 </div>
 </div>
 <p>It will be usefull to separate the categorical from the numerical data.</p>
 <section id="categorical-features" class="level3">
 <h3 class="anchored" data-anchor-id="categorical-features">Categorical features</h3>
-<div id="cell-30" class="cell" data-execution_count="26">
+<div id="cell-34" class="cell" data-execution_count="43">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only categorical features</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>categorical_features <span class="op">=</span> [column <span class="cf">for</span> column <span class="kw">in</span> features <span class="cf">if</span> column <span class="kw">not</span> <span class="kw">in</span> df_numerical.columns]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_missing_categorical <span class="op">=</span> df_full[categorical_features].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>df_missing_categorical <span class="op">=</span> df_missing_categorical.loc[df_missing_categorical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>df_missing_categorical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only categorical features</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_missing_categorical <span class="op">=</span> df_full[categorical_features].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df_missing_categorical <span class="op">=</span> df_missing_categorical.loc[df_missing_categorical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>df_missing_categorical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>PoolQC          2909
 MiscFeature     2814
 Alley           2721
@@ -1382,8 +1551,8 @@ Fence           2348
 MasVnrType      1766
 FireplaceQu     1420
 GarageCond       159
-GarageFinish     159
 GarageQual       159
+GarageFinish     159
 GarageType       157
 BsmtCond          82
 BsmtExposure      82
@@ -1391,24 +1560,24 @@ BsmtQual          81
 BsmtFinType2      80
 BsmtFinType1      79
 MSZoning           4
-Functional         2
 Utilities          2
-Exterior1st        1
+Functional         2
 Exterior2nd        1
-KitchenQual        1
+Exterior1st        1
 SaleType           1
+KitchenQual        1
 Electrical         1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-31" class="cell" data-execution_count="27">
+<div id="cell-35" class="cell" data-execution_count="44">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_categorical.index:</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_full[column].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_categorical.index:</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_full[column].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>------------------------------
@@ -1466,13 +1635,6 @@ Po       14
 Ex        3
 Name: count, dtype: int64
 ------------------------------
-GarageFinish
-Unf    1230
-RFn     811
-Fin     719
-NaN     159
-Name: count, dtype: int64
-------------------------------
 GarageQual
 TA     2604
 NaN     159
@@ -1480,6 +1642,13 @@ Fa      124
 Gd       24
 Po        5
 Ex        3
+Name: count, dtype: int64
+------------------------------
+GarageFinish
+Unf    1230
+RFn     811
+Fin     719
+NaN     159
 Name: count, dtype: int64
 ------------------------------
 GarageType
@@ -1545,6 +1714,12 @@ C (all)      25
 NaN           4
 Name: count, dtype: int64
 ------------------------------
+Utilities
+AllPub    2916
+NaN          2
+NoSeWa       1
+Name: count, dtype: int64
+------------------------------
 Functional
 Typ     2717
 Min2      70
@@ -1554,31 +1729,6 @@ Maj1      19
 Maj2       9
 Sev        2
 NaN        2
-Name: count, dtype: int64
-------------------------------
-Utilities
-AllPub    2916
-NaN          2
-NoSeWa       1
-Name: count, dtype: int64
-------------------------------
-Exterior1st
-VinylSd    1025
-MetalSd     450
-HdBoard     442
-Wd Sdng     411
-Plywood     221
-CemntBd     126
-BrkFace      87
-WdShing      56
-AsbShng      44
-Stucco       43
-BrkComm       6
-AsphShn       2
-Stone         2
-CBlock        2
-ImStucc       1
-NaN           1
 Name: count, dtype: int64
 ------------------------------
 Exterior2nd
@@ -1601,12 +1751,23 @@ Other         1
 NaN           1
 Name: count, dtype: int64
 ------------------------------
-KitchenQual
-TA     1492
-Gd     1151
-Ex      205
-Fa       70
-NaN       1
+Exterior1st
+VinylSd    1025
+MetalSd     450
+HdBoard     442
+Wd Sdng     411
+Plywood     221
+CemntBd     126
+BrkFace      87
+WdShing      56
+AsbShng      44
+Stucco       43
+BrkComm       6
+AsphShn       2
+Stone         2
+CBlock        2
+ImStucc       1
+NaN           1
 Name: count, dtype: int64
 ------------------------------
 SaleType
@@ -1620,6 +1781,14 @@ ConLw       8
 Oth         7
 Con         5
 NaN         1
+Name: count, dtype: int64
+------------------------------
+KitchenQual
+TA     1492
+Gd     1151
+Ex      205
+Fa       70
+NaN       1
 Name: count, dtype: int64
 ------------------------------
 Electrical
@@ -1640,59 +1809,58 @@ Name: count, dtype: int64
 <li><code>Exterior1st</code>: Exterior covering on house. It’s reasonable to think all houses have at some kind of exterior covering. So, for the first material we fill the only missing value with the mode which is Vinyl Siding.</li>
 <li><code>Exterior2nd</code>: Exterior covering on house (if more than one material). As it is possible that there is no second material for the exterior covering, we fill the only missing value with “None”.</li>
 </ul>
-<div id="cell-33" class="cell" data-execution_count="28">
+<div id="cell-37" class="cell" data-execution_count="45">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill with "None"</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>list_na_is_none <span class="op">=</span> [</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PoolQC"</span>,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MiscFeature"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Alley"</span>,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fence"</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MasVnrType"</span>,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FireplaceQu"</span>,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageCond"</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageFinish"</span>,</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageQual"</span>,</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageType"</span>,</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtCond"</span>,</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtExposure"</span>,</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtQual"</span>,</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtFinType2"</span>,</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtFinType1"</span>,</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Exterior2nd"</span>,</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> list_na_is_none:</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(<span class="st">"None"</span>)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill with the mode</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>list_na_is_mode <span class="op">=</span> [</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MSZoning"</span>,</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Functional"</span>,</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Utilities"</span>,</span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"KitchenQual"</span>,</span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SaleType"</span>,</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Electrical"</span>,</span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Exterior1st"</span>,</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> list_na_is_mode:</span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    fill_with_mode <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>], column].mode()[<span class="dv">0</span>]</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(fill_with_mode)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill with "None"</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>list_na_is_none <span class="op">=</span> [</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PoolQC"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MiscFeature"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Alley"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fence"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MasVnrType"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FireplaceQu"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageCond"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageFinish"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageQual"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GarageType"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtCond"</span>,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtExposure"</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtQual"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtFinType2"</span>,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BsmtFinType1"</span>,</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Exterior2nd"</span>,</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> list_na_is_none:</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(<span class="st">"None"</span>)</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill with the mode</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>list_na_is_mode <span class="op">=</span> [</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MSZoning"</span>,</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Functional"</span>,</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Utilities"</span>,</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"KitchenQual"</span>,</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SaleType"</span>,</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Electrical"</span>,</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Exterior1st"</span>,</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> list_na_is_mode:</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    fill_with_mode <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>], column].mode()[<span class="dv">0</span>]</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(fill_with_mode)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="numerical-features" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-features">Numerical features</h3>
-<div id="cell-35" class="cell" data-execution_count="29">
+<div id="cell-39" class="cell" data-execution_count="46">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only numerical features</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>numerical_columns <span class="op">=</span> [column <span class="cf">for</span> column <span class="kw">in</span> df_numerical]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df_missing_numerical <span class="op">=</span> df_full[numerical_columns].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>df_missing_numerical <span class="op">=</span> df_missing_numerical.loc[df_missing_numerical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>df_missing_numerical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only numerical features</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_missing_numerical <span class="op">=</span> df_full[numerical_features].isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df_missing_numerical <span class="op">=</span> df_missing_numerical.loc[df_missing_numerical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>df_missing_numerical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>LotFrontage     486
 GarageYrBlt     159
 MasVnrArea       23
@@ -1707,14 +1875,14 @@ BsmtUnfSF         1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-36" class="cell" data-execution_count="30">
+<div id="cell-40" class="cell" data-execution_count="47">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_numerical.index:</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_full[column].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_numerical.index:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_full[column].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>------------------------------
@@ -1860,19 +2028,19 @@ Name: count, Length: 1136, dtype: int64
 <p>Most numerical features with missing values describe optional property characteristics, such as basements, garages, or masonry veneer. In these cases, a missing value generally indicates the absence of the corresponding feature, making <code>0</code> a meaningful replacement.</p>
 <p>Two variables deserve special attention: <code>LotFrontage</code> and <code>GarageYrBlt</code>. For <code>LotFrontage</code>, a missing value does not imply zero street frontage. Likewise, <code>GarageYrBlt</code> is missing when a garage is absent rather than because the construction year is zero. More sophisticated imputation strategies could therefore be justified for these variables.</p>
 <p>However, the number of missing values is relatively small compared to the size of the dataset, and many of the affected variables naturally admit a value of <code>0</code>. To keep the preprocessing pipeline simple and consistent, we will replace all remaining numerical missing values with <code>0</code>.</p>
-<div id="cell-38" class="cell" data-execution_count="31">
+<div id="cell-42" class="cell" data-execution_count="48">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing values with 0</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_numerical.index:</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing values with 0</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df_missing_numerical.index:</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    df_full[column] <span class="op">=</span> df_full[column].fillna(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Inspecting the value counts also revealed a likely data entry error. The variable <code>GarageYrBlt</code> contains a value of <code>2207</code>, which is clearly implausible given the context of the dataset. Since this year differs from <code>2007</code> by only a single digit and all other observations fall within a realistic range of construction years, we treat it as a typo and replace it with <code>2007</code>, which appears to be the most likely intended value.</p>
-<div id="cell-40" class="cell" data-execution_count="32">
+<div id="cell-44" class="cell" data-execution_count="49">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"GarageYrBlt"</span>] <span class="op">=</span> df_full[<span class="st">"GarageYrBlt"</span>].replace(<span class="dv">2207</span>, <span class="dv">2007</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"GarageYrBlt"</span>] <span class="op">=</span> df_full[<span class="st">"GarageYrBlt"</span>].replace(<span class="dv">2207</span>, <span class="dv">2007</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1881,51 +2049,51 @@ Name: count, Length: 1136, dtype: int64
 <h2 class="anchored" data-anchor-id="numerical-features-and-the-target-variable">Numerical features and the target variable</h2>
 <p>One of the main objectives of exploratory data analysis is to identify which features appear to be related to the target variable. For numerical features, a simple way to do this is through scatterplots.</p>
 <p>The plots below compare each numerical feature against <code>SalePrice</code>. While these visualizations do not provide a quantitative measure of association, they can reveal trends, outliers, nonlinear relationships, and other patterns that may be useful for subsequent modeling and feature engineering.</p>
-<div id="cell-42" class="cell" data-execution_count="33">
+<div id="cell-46" class="cell" data-execution_count="50">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-split train/test sets:</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Train set</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df_train <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>]]</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> df_train.drop(columns<span class="op">=</span>[<span class="st">"SalePrice"</span>, <span class="st">"IsTrainSet"</span>])</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>], <span class="st">"SalePrice"</span>]</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test set</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> df_full.loc[<span class="op">~</span>df_full[<span class="st">"IsTrainSet"</span>]]</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplots for all features</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df_numerical.columns</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(cols) <span class="op">/</span> n_cols))</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    n_rows,</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    n_cols,</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows)</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(cols):</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>        X_train[col],</span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>        y_train,</span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>    axes[i].set_xlabel(col)</span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    axes[i].set_ylabel(<span class="st">"SalePrice"</span>)</span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide unused axes</span></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-split train/test sets:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Train set</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>df_train <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>]]</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> df_train.drop(columns<span class="op">=</span>[<span class="st">"SalePrice"</span>, <span class="st">"IsTrainSet"</span>])</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> df_full.loc[df_full[<span class="st">"IsTrainSet"</span>], <span class="st">"SalePrice"</span>]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test set</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> df_full.loc[<span class="op">~</span>df_full[<span class="st">"IsTrainSet"</span>]]</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplots for all features</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df_numerical.columns</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>n_cols <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="bu">int</span>(np.ceil(<span class="bu">len</span>(cols) <span class="op">/</span> n_cols))</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    n_rows,</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    n_cols,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> n_cols, <span class="dv">4</span> <span class="op">*</span> n_rows)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(cols):</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>        X_train[col],</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>        y_train,</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(col)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    axes[i].set_xlabel(col)</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    axes[i].set_ylabel(<span class="st">"SalePrice"</span>)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide unused axes</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(axes)):</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>    axes[j].set_visible(<span class="va">False</span>)</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1936,40 +2104,51 @@ Name: count, Length: 1136, dtype: int64
 <p>The scatterplots provide a qualitative view of the relationship between individual features and the target variable. We can complement this analysis by computing the correlation matrix for the numerical features.</p>
 <p>The correlation coefficient measures the strength and direction of a linear relationship between two variables. Values close to <code>1</code> indicate a strong positive association, values close to <code>-1</code> indicate a strong negative association, and values near <code>0</code> suggest little or no linear relationship.</p>
 <p>The heatmap below highlights both the features most strongly associated with <code>SalePrice</code> and potential correlations between predictors that may indicate redundancy or multicollinearity.</p>
-<div id="cell-44" class="cell" data-execution_count="34">
+<div id="cell-48" class="cell" data-execution_count="51">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_train.select_dtypes(include<span class="op">=</span><span class="st">"number"</span>).corr()</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>sns.heatmap(</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    corr,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"coolwarm"</span>,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    square<span class="op">=</span><span class="va">True</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Matrix"</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_train.select_dtypes(include<span class="op">=</span><span class="st">"number"</span>).corr()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>sns.heatmap(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    corr,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"coolwarm"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    square<span class="op">=</span><span class="va">True</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Matrix"</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_EDA_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="01_EDA_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>While correlation does not imply causation, it provides a useful first indication of which variables may be most informative for predicting house prices. Features exhibiting strong positive or negative correlations with <code>SalePrice</code> are natural candidates for inclusion in predictive models.</p>
+<p>Correlation analysis can also reveal relationships among the predictor variables themselves. Highly correlated features may contain overlapping information, which can be particularly relevant when using linear models.</p>
+<p>It is important to note, however, that this analysis is based only on the original variables provided in the dataset. In the next stage of the project, we will create several new features through feature engineering. These derived variables may capture relationships that are not apparent in the original feature set and can sometimes exhibit stronger correlations with the target than the raw features from which they are constructed.</p>
+<p>For this reason, we will revisit the correlation analysis after feature engineering to evaluate how the newly created features relate to <code>SalePrice</code>, assess whether they provide additional predictive information, and identify cases where multiple features capture similar information. This can help guide feature selection and reduce redundancy by avoiding the inclusion of several highly correlated variables in the same model.</p>
 </section>
 <section id="save-the-processed-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="save-the-processed-dataset">Save the processed dataset</h2>
 <p>At this stage, all identified data quality issues and missing values have been addressed. To avoid repeating these preprocessing steps in subsequent notebooks, we save the resulting dataset to disk.</p>
 <p>The following notebook will build upon this dataset to perform feature engineering and prepare the data for machine learning models.</p>
-<div id="cell-46" class="cell" data-execution_count="35">
+<div id="cell-51" class="cell" data-execution_count="52">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save dataframe in parquet format to preserve data types</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df_full.to_parquet(<span class="st">"processed_data/eda.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save dataframes in parquet format to preserve data types</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_full.to_parquet(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"processed_data/01_data.parquet"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>df_features.to_parquet(</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"processed_data/01_features.parquet"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1985,7 +2164,7 @@ Name: count, Length: 1136, dtype: int64
 <li>Both numerical and categorical variables appear to contain valuable predictive information and are likely to contribute to model performance.</li>
 </ul>
 <p>At this stage, we have a solid understanding of the dataset and the main factors that influence house prices. However, additional preprocessing and feature engineering steps are still required before training machine learning models. In particular, we will need to encode categorical variables, transform skewed features, and construct new features that may improve predictive performance.</p>
-<p>In the <a href="./2_feature_engineering.html">next notebook</a>, we will focus on feature engineering and preparing the dataset for modeling.</p>
+<p>In the <a href="./02_feature_engineering.html">next notebook</a>, we will focus on feature engineering and preparing the dataset for modeling.</p>
 
 
 </section>

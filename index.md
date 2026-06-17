@@ -33,11 +33,11 @@ For installation, environment setup, and project structure, see the repositoryâ€
 
 ## Index
 
-### 1. **[Exploratory data analysis (EDA)](1_EDA.ipynb)**
+### 1. **[Exploratory data analysis (EDA)](01_EDA.ipynb)**
 Understand the problem, inspect the raw data, and build intuition about which features are related to house prices.
 
-### 2. **[Feature engineering](2_feature_engineering.ipynb)**
+### 2. **[Feature engineering](02_feature_engineering.ipynb)**
 Encode categorical variables, transform skewed features, and create new predictors that improve model performance.
 
-### 3. **[Modeling, evaluation, and submission](3_modeling.ipynb)**
+### 3. **[Modeling, evaluation, and submission](03_modeling.ipynb)**
 Train regression models, compare their performance, tune hyperparameters, and generate a Kaggle submission.

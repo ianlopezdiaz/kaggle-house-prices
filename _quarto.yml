@@ -11,11 +11,11 @@ website:
       - text: "Overview"
         href: index.md
       - text: "EDA"
-        href: 1_EDA.ipynb
+        href: 01_EDA.ipynb
       - text: "Feature engineering"
-        href: 2_feature_engineering.ipynb
+        href: 02_feature_engineering.ipynb
       - text: "Modeling"
-        href: 3_modeling.ipynb
+        href: 03_modeling.ipynb
     right:
       - icon: github
         href: https://ianlopezdiaz.github.io/portfolio
