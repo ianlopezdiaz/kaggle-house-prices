@@ -1,6 +1,7 @@
 /.quarto/
 **/*.quarto_ipynb
 
+/.vscode/
 *.code-workspace
 TODO.md
 ignore/*
