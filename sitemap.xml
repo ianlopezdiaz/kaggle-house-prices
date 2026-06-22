@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/01_EDA.html</loc>
-    <lastmod>2026-06-17T03:51:45.263Z</lastmod>
+    <lastmod>2026-06-22T20:31:03.184Z</lastmod>
   </url>
   <url>
     <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/index.html</loc>
@@ -10,10 +10,14 @@
   </url>
   <url>
     <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/02_feature_engineering.html</loc>
-    <lastmod>2026-06-17T04:08:31.565Z</lastmod>
+    <lastmod>2026-06-22T20:31:19.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/TODO.html</loc>
+    <lastmod>2026-06-22T20:31:43.979Z</lastmod>
   </url>
   <url>
     <loc>https://ianlopezdiaz.github.io/kaggle-house-prices/03_modeling.html</loc>
-    <lastmod>2026-06-17T03:52:19.726Z</lastmod>
+    <lastmod>2026-06-22T20:31:48.393Z</lastmod>
   </url>
 </urlset>
