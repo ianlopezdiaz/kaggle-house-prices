@@ -9,13 +9,15 @@ website:
   navbar:
     left:
       - text: "Overview"
-        href: index.md
-      - text: "EDA"
-        href: 01_EDA.ipynb
-      - text: "Feature engineering"
-        href: 02_feature_engineering.ipynb
-      - text: "Modeling"
-        href: 03_modeling.ipynb
+        href: index.qmd
+      - text: Notebooks
+        menu:
+          - href: notebooks/01_eda.ipynb
+            text: "01 - EDA"
+          - href: notebooks/02_feature_engineering.ipynb.ipynb
+            text: "02 - Feature engineering"
+          - href: notebooks/03_modeling.ipynb
+            text: "03 - Modeling"
     right:
       - icon: github
         href: https://ianlopezdiaz.github.io/portfolio

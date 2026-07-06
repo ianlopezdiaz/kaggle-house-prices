@@ -1,0 +1,74 @@
+---
+title: "House Prices: End-to-End Regression Case Study"
+description: "End-to-end machine learning workflow for predicting residential property prices using structured tabular data."
+---
+
+## Overview
+
+This project develops an end-to-end machine learning workflow for predicting residential property prices using the Kaggle House Prices dataset.
+
+Rather than focusing solely on leaderboard performance, the project emphasizes the complete regression modeling process, including exploratory data analysis, feature engineering, feature transformations, model comparison, and rigorous evaluation through cross-validation.
+
+The final objective is to build a predictive model capable of estimating house sale prices from structured property information and generating a valid Kaggle competition submission.
+
+---
+
+## Problem Statement
+
+Given a set of residential property characteristics, the system must:
+
+1. Explore and understand the dataset.
+2. Prepare and engineer meaningful predictive features.
+3. Train and compare multiple regression models.
+4. Predict house sale prices for unseen properties.
+
+---
+
+## Methodology
+
+The project follows a structured machine learning pipeline:
+
+- Exploratory Data Analysis (EDA)
+- Data cleaning and missing value treatment
+- Feature engineering
+- Log transformation of skewed variables
+- Baseline models
+- Linear regression
+- Random Forest regression
+- Gradient Boosting regression
+- Cross-validation and model comparison
+- Final model training and Kaggle submission
+
+---
+
+## Dataset
+
+The project uses the **House Prices: Advanced Regression Techniques** dataset from Kaggle.
+
+The dataset contains detailed information describing residential properties in Ames, Iowa, including:
+
+- Lot characteristics
+- Building quality and condition
+- Interior and exterior features
+- Garage and basement information
+- Sale price (training set)
+
+The objective is to predict the sale price of houses in the test set.
+
+---
+
+## Project Structure
+
+The repository is organized as follows:
+
+- `notebooks/` → complete regression workflow
+- `data/raw/` → original Kaggle datasets
+- `data/processed/` → processed datasets and submission files
+- `images/` → project images and figures
+- `docs/` → generated Quarto website
+
+---
+
+## Status
+
+This project is complete and documents a full supervised regression workflow, from raw data exploration to model evaluation and Kaggle submission generation.
