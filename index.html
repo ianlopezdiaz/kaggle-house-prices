@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="End-to-end machine learning workflow for predicting residential property prices using structured tabular data.">
 
 <title>House Prices: End-to-End Regression Case Study</title>
 <style>
@@ -257,20 +258,31 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./01_EDA.html"> 
-<span class="menu-text">EDA</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/01_eda.html">
+ <span class="dropdown-text">01 - EDA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./02_feature_engineering.html"> 
-<span class="menu-text">Feature engineering</span></a>
+        <li>
+    <a class="dropdown-item" href="./notebooks/02_feature_engineering.html">
+ <span class="dropdown-text">02 - Feature engineering</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./03_modeling.html"> 
-<span class="menu-text">Modeling</span></a>
+        <li>
+    <a class="dropdown-item" href="./notebooks/03_modeling.html">
+ <span class="dropdown-text">03 - Modeling</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ianlopezdiaz.github.io/portfolio"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://ianlopezdiaz.github.io/portfolio"> <i class="bi bi-github" role="img">
 </i> 
@@ -293,68 +305,107 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#house-prices-end-to-end-regression-case-study" id="toc-house-prices-end-to-end-regression-case-study" class="nav-link active" data-scroll-target="#house-prices-end-to-end-regression-case-study">House Prices: End-to-End Regression Case Study</a>
-  <ul class="collapse">
-  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
-  <li><a href="#index" id="toc-index" class="nav-link" data-scroll-target="#index">Index</a>
-  <ul class="collapse">
-  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">1. <strong>Exploratory data analysis (EDA)</strong></a></li>
-  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">2. <strong>Feature engineering</strong></a></li>
-  <li><a href="#modeling-evaluation-and-submission" id="toc-modeling-evaluation-and-submission" class="nav-link" data-scroll-target="#modeling-evaluation-and-submission">3. <strong>Modeling, evaluation, and submission</strong></a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem Statement</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">House Prices: End-to-End Regression Case Study</h1>
+</div>
+
+<div>
+  <div class="description">
+    End-to-end machine learning workflow for predicting residential property prices using structured tabular data.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="house-prices-end-to-end-regression-case-study" class="level1">
-<h1>House Prices: End-to-End Regression Case Study</h1>
-<p>This project demonstrates a complete machine learning workflow using the famous <a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques">Kaggle House Prices dataset</a>. The objective is to predict residential property prices from structured tabular data while showcasing the techniques commonly used in real-world regression problems.</p>
-<p>The analysis covers:</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This project develops an end-to-end machine learning workflow for predicting residential property prices using the Kaggle House Prices dataset.</p>
+<p>Rather than focusing solely on leaderboard performance, the project emphasizes the complete regression modeling process, including exploratory data analysis, feature engineering, feature transformations, model comparison, and rigorous evaluation through cross-validation.</p>
+<p>The final objective is to build a predictive model capable of estimating house sale prices from structured property information and generating a valid Kaggle competition submission.</p>
+<hr>
+</section>
+<section id="problem-statement" class="level2">
+<h2 class="anchored" data-anchor-id="problem-statement">Problem Statement</h2>
+<p>Given a set of residential property characteristics, the system must:</p>
+<ol type="1">
+<li>Explore and understand the dataset.</li>
+<li>Prepare and engineer meaningful predictive features.</li>
+<li>Train and compare multiple regression models.</li>
+<li>Predict house sale prices for unseen properties.</li>
+</ol>
+<hr>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>The project follows a structured machine learning pipeline:</p>
 <ul>
-<li>Exploratory data analysis</li>
-<li>Data cleaning</li>
+<li>Exploratory Data Analysis (EDA)</li>
+<li>Data cleaning and missing value treatment</li>
 <li>Feature engineering</li>
-<li>Model development</li>
-<li>Cross-validation</li>
-<li>Performance evaluation</li>
-<li>Kaggle submission generation</li>
+<li>Log transformation of skewed variables</li>
+<li>Baseline models</li>
+<li>Linear regression</li>
+<li>Random Forest regression</li>
+<li>Gradient Boosting regression</li>
+<li>Cross-validation and model comparison</li>
+<li>Final model training and Kaggle submission</li>
 </ul>
-<p>Whether you are learning machine learning or reviewing my portfolio, this project provides a transparent, reproducible example of building regression models on a real dataset.</p>
-<p>For installation, environment setup, and project structure, see the repository’s <a href="README.md">README</a>.</p>
 <hr>
-<section id="what-you-will-learn" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p>The project uses the <strong>House Prices: Advanced Regression Techniques</strong> dataset from Kaggle.</p>
+<p>The dataset contains detailed information describing residential properties in Ames, Iowa, including:</p>
 <ul>
-<li>How to frame a supervised regression problem using a real Kaggle competition.</li>
-<li>How to explore the dataset, handle missing values, engineer useful features, and prepare data for regression models.</li>
-<li>How to train, evaluate, and compare baseline and tree-based models, and generate a Kaggle submission.</li>
+<li>Lot characteristics</li>
+<li>Building quality and condition</li>
+<li>Interior and exterior features</li>
+<li>Garage and basement information</li>
+<li>Sale price (training set)</li>
+</ul>
+<p>The objective is to predict the sale price of houses in the test set.</p>
+<hr>
+</section>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
+<p>The repository is organized as follows:</p>
+<ul>
+<li><code>notebooks/</code> → complete regression workflow</li>
+<li><code>data/raw/</code> → original Kaggle datasets</li>
+<li><code>data/processed/</code> → processed datasets and submission files</li>
 </ul>
 <hr>
 </section>
-<section id="index" class="level2">
-<h2 class="anchored" data-anchor-id="index">Index</h2>
-<section id="exploratory-data-analysis-eda" class="level3">
-<h3 class="anchored" data-anchor-id="exploratory-data-analysis-eda">1. <strong><a href="./01_EDA.html">Exploratory data analysis (EDA)</a></strong></h3>
-<p>Understand the problem, inspect the raw data, and build intuition about which features are related to house prices.</p>
-</section>
-<section id="feature-engineering" class="level3">
-<h3 class="anchored" data-anchor-id="feature-engineering">2. <strong><a href="./02_feature_engineering.html">Feature engineering</a></strong></h3>
-<p>Encode categorical variables, transform skewed features, and create new predictors that improve model performance.</p>
-</section>
-<section id="modeling-evaluation-and-submission" class="level3">
-<h3 class="anchored" data-anchor-id="modeling-evaluation-and-submission">3. <strong><a href="./03_modeling.html">Modeling, evaluation, and submission</a></strong></h3>
-<p>Train regression models, compare their performance, tune hyperparameters, and generate a Kaggle submission.</p>
+<section id="status" class="level2">
+<h2 class="anchored" data-anchor-id="status">Status</h2>
+<p>This project is complete and documents a full supervised regression workflow, from raw data exploration to model evaluation and Kaggle submission generation.</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
