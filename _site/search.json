@@ -39,7 +39,7 @@
     "href": "index.html#project-structure",
     "title": "House Prices: End-to-End Regression Case Study",
     "section": "Project Structure",
-    "text": "Project Structure\nThe repository is organized as follows:\n\nnotebooks/ → complete regression workflow\ndata/raw/ → original Kaggle datasets\ndata/processed/ → processed datasets and submission files"
+    "text": "Project Structure\nThe repository is organized as follows:\nkaggle-house-prices/\n│\n├── README.md\n├── index.qmd\n├── _quarto.yml\n├── environment.yml\n├── LICENSE\n|\n├── notebooks/\n|   |\n|   ├── 01_eda.ipynb\n|   ├── 02_feature_engineering.ipynb\n|   └── 03_modeling.ipynb\n|\n├── data/\n|   |\n|   ├── raw/\n|   |   ├── data_description.txt\n|   |   ├── sample_submission.csv\n|   |   ├── test.csv\n|   |   └── train.csv\n|   |\n|   └── processed/\n|       ├── 01_data.parquet\n|       ├── 01_features.parquet\n|       ├── 02_data.parquet\n|       ├── 02_features.parquet\n|       └── submission.csv\n|\n└── _site/"
   },
   {
     "objectID": "index.html#status",
