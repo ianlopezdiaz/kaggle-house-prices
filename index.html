@@ -394,11 +394,36 @@ ul.task-list li input[type="checkbox"] {
 <section id="project-structure" class="level2">
 <h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
 <p>The repository is organized as follows:</p>
-<ul>
-<li><code>notebooks/</code> → complete regression workflow</li>
-<li><code>data/raw/</code> → original Kaggle datasets</li>
-<li><code>data/processed/</code> → processed datasets and submission files</li>
-</ul>
+<pre><code>kaggle-house-prices/
+│
+├── README.md
+├── index.qmd
+├── _quarto.yml
+├── environment.yml
+├── LICENSE
+|
+├── notebooks/
+|   |
+|   ├── 01_eda.ipynb
+|   ├── 02_feature_engineering.ipynb
+|   └── 03_modeling.ipynb
+|
+├── data/
+|   |
+|   ├── raw/
+|   |   ├── data_description.txt
+|   |   ├── sample_submission.csv
+|   |   ├── test.csv
+|   |   └── train.csv
+|   |
+|   └── processed/
+|       ├── 01_data.parquet
+|       ├── 01_features.parquet
+|       ├── 02_data.parquet
+|       ├── 02_features.parquet
+|       └── submission.csv
+|
+└── _site/</code></pre>
 <hr>
 </section>
 <section id="status" class="level2">
