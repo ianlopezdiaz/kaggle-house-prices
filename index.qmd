@@ -64,8 +64,6 @@ The repository is organized as follows:
 - `notebooks/` → complete regression workflow
 - `data/raw/` → original Kaggle datasets
 - `data/processed/` → processed datasets and submission files
-- `images/` → project images and figures
-- `docs/` → generated Quarto website
 
 ---
 

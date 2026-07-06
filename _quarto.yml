@@ -14,11 +14,13 @@ website:
         menu:
           - href: notebooks/01_eda.ipynb
             text: "01 - EDA"
-          - href: notebooks/02_feature_engineering.ipynb.ipynb
+          - href: notebooks/02_feature_engineering.ipynb
             text: "02 - Feature engineering"
           - href: notebooks/03_modeling.ipynb
             text: "03 - Modeling"
     right:
+      - text: Portfolio
+        href: https://ianlopezdiaz.github.io/portfolio
       - icon: github
         href: https://ianlopezdiaz.github.io/portfolio
   page-footer:
