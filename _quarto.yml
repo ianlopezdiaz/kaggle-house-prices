@@ -12,17 +12,17 @@ website:
         href: index.qmd
       - text: Notebooks
         menu:
-          - href: notebooks/01_eda.ipynb
-            text: "01 - EDA"
+          - href: notebooks/01_exploratory_data_analysis.ipynb
+            text: "01 - Exploratory Data Analysis (EDA)"
           - href: notebooks/02_feature_engineering.ipynb
             text: "02 - Feature engineering"
-          - href: notebooks/03_modeling.ipynb
-            text: "03 - Modeling"
+          - href: notebooks/03_modeling_and_evaluation.ipynb
+            text: "03 - Modeling and Evaluation"
     right:
       - text: Portfolio
         href: https://ianlopezdiaz.github.io/portfolio
       - icon: github
-        href: https://ianlopezdiaz.github.io/portfolio
+        href: https://github.com/ianlopezdiaz/kaggle-house-prices
   page-footer:
     left: "© 2026 ianlopezdiaz"
     right: "Built with [Quarto](https://quarto.org/)"

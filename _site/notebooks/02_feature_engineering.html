@@ -301,16 +301,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../notebooks/01_eda.html">
- <span class="dropdown-text">01 - EDA</span></a>
+    <a class="dropdown-item" href="../notebooks/01_exploratory_data_analysis.html">
+ <span class="dropdown-text">01 - Exploratory Data Analysis (EDA)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/02_feature_engineering.html">
  <span class="dropdown-text">02 - Feature engineering</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/03_modeling.html">
- <span class="dropdown-text">03 - Modeling</span></a>
+    <a class="dropdown-item" href="../notebooks/03_modeling_and_evaluation.html">
+ <span class="dropdown-text">03 - Modeling and Evaluation</span></a>
   </li>  
     </ul>
   </li>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://ianlopezdiaz.github.io/portfolio"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/ianlopezdiaz/kaggle-house-prices"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -416,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The features introduced in this notebook are motivated by simple domain knowledge about residential properties. In general, buyers tend to care about factors such as total living space, property age, overall quality, available amenities, and the amount of usable space dedicated to specific purposes. The engineered features below aim to capture these concepts more directly.</p>
 <p>Before creating new features, we first load the processed dataset generated in the previous notebook. This dataset already includes the missing-value handling and data quality corrections identified during the exploratory data analysis stage.</p>
 <p>We then import the libraries required for feature engineering and subsequent preprocessing steps.</p>
-<div id="cell-2" class="cell" data-execution_count="60">
+<div id="cell-2" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
@@ -437,12 +437,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-3" class="cell" data-execution_count="61">
+<div id="cell-3" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -745,12 +745,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="62">
+<div id="cell-4" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -867,7 +867,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="totalrooms" class="level3">
 <h3 class="anchored" data-anchor-id="totalrooms">TotalRooms</h3>
 <p>The total number of rooms is often more informative than the individual room counts alone. This feature attempts to capture the overall functional capacity of the house.</p>
-<div id="cell-7" class="cell" data-execution_count="63">
+<div id="cell-7" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -894,7 +894,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="totalbathrooms" class="level3">
 <h3 class="anchored" data-anchor-id="totalbathrooms">TotalBathrooms</h3>
 <p>The dataset distributes bathroom information across multiple variables. Combining them into a single measure provides a more complete representation of the property’s sanitary facilities.</p>
-<div id="cell-9" class="cell" data-execution_count="64">
+<div id="cell-9" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -923,7 +923,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="totalarea" class="level3">
 <h3 class="anchored" data-anchor-id="totalarea">TotalArea</h3>
 <p>The original dataset stores living space across multiple variables corresponding to different levels of the house. While this information is useful, buyers are often interested in the total amount of usable space available. This feature aggregates the main living areas into a single measure of property size.</p>
-<div id="cell-11" class="cell" data-execution_count="65">
+<div id="cell-11" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -951,7 +951,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="totalporcharea" class="level3">
 <h3 class="anchored" data-anchor-id="totalporcharea">TotalPorchArea</h3>
 <p>Porches appear in several separate variables depending on their type. This feature aggregates them into a single measure of outdoor living space.</p>
-<div id="cell-13" class="cell" data-execution_count="66">
+<div id="cell-13" class="cell" data-execution_count="7">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -980,7 +980,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="totalqualityscore" class="level3">
 <h3 class="anchored" data-anchor-id="totalqualityscore">TotalQualityScore</h3>
 <p>The overall quality and overall condition ratings describe complementary aspects of a property. Combining them creates a broader measure of the house’s general quality.</p>
-<div id="cell-15" class="cell" data-execution_count="67">
+<div id="cell-15" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1008,7 +1008,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="luxuryfeaturecount">LuxuryFeatureCount</h3>
 <p>This feature counts the number of selected amenities present in a property. While each amenity contributes information individually, combining them into a single feature provides a simple measure of the property’s amenity level.</p>
 <p>The term luxury is used loosely here to refer to features that are commonly associated with larger or more valuable homes. Higher values indicate that a property offers a greater number of these amenities and may therefore command a higher market price.</p>
-<div id="cell-17" class="cell" data-execution_count="68">
+<div id="cell-17" class="cell" data-execution_count="9">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1041,7 +1041,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="houseage" class="level3">
 <h3 class="anchored" data-anchor-id="houseage">HouseAge</h3>
 <p>The age of a property at the time of sale is likely to influence its market value. Newer houses often command higher prices due to modern construction standards, lower maintenance requirements, and updated amenities.</p>
-<div id="cell-20" class="cell" data-execution_count="69">
+<div id="cell-20" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1068,7 +1068,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="yearssinceremodel" class="level3">
 <h3 class="anchored" data-anchor-id="yearssinceremodel">YearsSinceRemodel</h3>
 <p>The original remodeling year provides useful information, but the number of years since the last renovation may be more directly related to a property’s perceived condition and market value.</p>
-<div id="cell-22" class="cell" data-execution_count="70">
+<div id="cell-22" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1095,7 +1095,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="garageage" class="level3">
 <h3 class="anchored" data-anchor-id="garageage">GarageAge</h3>
 <p>A newer garage may be more desirable than an older one due to reduced wear and improved construction standards. This feature captures the age of the garage at the time of sale.</p>
-<div id="cell-24" class="cell" data-execution_count="71">
+<div id="cell-24" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1126,7 +1126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qualityarea" class="level3">
 <h3 class="anchored" data-anchor-id="qualityarea">QualityArea</h3>
 <p>Previous analysis showed that both living area and overall quality are strongly associated with sale price. This feature captures the interaction between these variables, allowing the model to distinguish between houses that are large, high-quality, or both. It can be interpreted as a rough measure of quality-adjusted living space.</p>
-<div id="cell-27" class="cell" data-execution_count="72">
+<div id="cell-27" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1159,7 +1159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The total garage area and the number of vehicle spaces provide complementary information about the garage. By dividing the area by the number of parking spaces, we obtain a rough measure of the amount of space available per vehicle.</p>
 <p>This feature serves as an example of a ratio-based transformation, which can sometimes reveal relationships that are not apparent from the original variables alone. Larger values may indicate more spacious garages with additional storage or workshop space.</p>
 <p>When constructing this feature, care must be taken to avoid division by zero. Properties without a garage have <code>GarageCars = 0</code>, so the ratio is defined as 0 for these observations.</p>
-<div id="cell-30" class="cell" data-execution_count="73">
+<div id="cell-30" class="cell" data-execution_count="14">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1189,7 +1189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The total above-ground living area and the number of rooms both provide useful information about the size of a house. However, they describe different aspects of the property. Two houses may have the same living area but very different room layouts.</p>
 <p>By dividing the living area by the number of rooms, we obtain a rough measure of the average room size. This ratio may help distinguish between houses with many small rooms and those with fewer, more spacious rooms.</p>
 <p>As with <code>GarageAreaPerCar</code>, or any ratio-based feature, care must be taken to avoid division by zero. In this dataset, all properties have at least one room above ground, but we nevertheless define the ratio as 0 whenever TotRmsAbvGrd is zero for robustness.</p>
-<div id="cell-32" class="cell" data-execution_count="74">
+<div id="cell-32" class="cell" data-execution_count="15">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1221,7 +1221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="isremodeled" class="level3">
 <h3 class="anchored" data-anchor-id="isremodeled">IsRemodeled</h3>
 <p>Indicates whether the property has been remodeled since its original construction.</p>
-<div id="cell-35" class="cell" data-execution_count="75">
+<div id="cell-35" class="cell" data-execution_count="16">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1247,7 +1247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="haspool" class="level3">
 <h3 class="anchored" data-anchor-id="haspool">HasPool</h3>
 <p>Indicates whether the property includes a swimming pool.</p>
-<div id="cell-37" class="cell" data-execution_count="76">
+<div id="cell-37" class="cell" data-execution_count="17">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1273,7 +1273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hasgarage" class="level3">
 <h3 class="anchored" data-anchor-id="hasgarage">HasGarage</h3>
 <p>Indicates whether the property includes a garage.</p>
-<div id="cell-39" class="cell" data-execution_count="77">
+<div id="cell-39" class="cell" data-execution_count="18">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1299,7 +1299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hasbasement" class="level3">
 <h3 class="anchored" data-anchor-id="hasbasement">HasBasement</h3>
 <p>Indicates whether the property includes a basement.</p>
-<div id="cell-41" class="cell" data-execution_count="78">
+<div id="cell-41" class="cell" data-execution_count="19">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1325,7 +1325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hasfireplace" class="level3">
 <h3 class="anchored" data-anchor-id="hasfireplace">HasFireplace</h3>
 <p>Indicates whether the property includes at least one fireplace.</p>
-<div id="cell-43" class="cell" data-execution_count="79">
+<div id="cell-43" class="cell" data-execution_count="20">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the feature</span></span>
@@ -1357,14 +1357,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="aggregate-features" class="level3">
 <h3 class="anchored" data-anchor-id="aggregate-features">Aggregate features</h3>
 <p>Aggregate features combine information from multiple variables into a single measure.</p>
-<div id="cell-46" class="cell" data-execution_count="80">
+<div id="cell-46" class="cell" data-execution_count="21">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_features.loc[</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    df_features[<span class="st">"Category"</span>].eq(<span class="st">"aggregate"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="80">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -1438,14 +1438,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="difference-features" class="level3">
 <h3 class="anchored" data-anchor-id="difference-features">Difference features</h3>
 <p>Difference features capture the elapsed time or distance between two related quantities.</p>
-<div id="cell-48" class="cell" data-execution_count="81">
+<div id="cell-48" class="cell" data-execution_count="22">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_features.loc[</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    df_features[<span class="st">"Category"</span>].eq(<span class="st">"difference"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="81">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -1495,14 +1495,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ratio-features" class="level3">
 <h3 class="anchored" data-anchor-id="ratio-features">Ratio features</h3>
 <p>Ratio features describe the relationship between two quantities and often provide a more informative measure than either variable alone.</p>
-<div id="cell-50" class="cell" data-execution_count="82">
+<div id="cell-50" class="cell" data-execution_count="23">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_features.loc[</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    df_features[<span class="st">"Category"</span>].eq(<span class="st">"ratio"</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="82">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 
@@ -1544,14 +1544,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="indicator-features" class="level3">
 <h3 class="anchored" data-anchor-id="indicator-features">Indicator features</h3>
 <p>Indicator features explicitly represent the presence or absence of important property characteristics.</p>
-<div id="cell-52" class="cell" data-execution_count="83">
+<div id="cell-52" class="cell" data-execution_count="24">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_features.loc[</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    df_features[<span class="st">"Category"</span>].eq(<span class="st">"indicator"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="83">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -1620,7 +1620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Many machine learning algorithms perform better when numerical features have distributions that are closer to symmetric. Highly skewed variables can place disproportionate emphasis on extreme observations and may make it more difficult for some models to learn meaningful relationships.</p>
 <p>To identify potentially problematic features, we compute the skewness of each numerical variable. Positive skewness indicates a long right tail, while negative skewness indicates a long left tail. Variables whose skewness exceeds a predefined threshold will be transformed using a logarithmic transformation.</p>
 <p>The goal is not to force every feature into a perfectly normal distribution, but rather to reduce the influence of extreme values and produce more stable feature representations.</p>
-<div id="cell-54" class="cell" data-execution_count="84">
+<div id="cell-54" class="cell" data-execution_count="25">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_features[<span class="st">"Skewness"</span>] <span class="op">=</span> np.nan</span>
@@ -1640,7 +1640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>The skewness of each numerical feature is calculated and stored in the feature metadata table. Sorting the features by the absolute value of their skewness allows us to quickly identify variables whose distributions deviate most strongly from symmetry and are therefore candidates for logarithmic transformation.</p>
-<div id="cell-56" class="cell" data-execution_count="85">
+<div id="cell-56" class="cell" data-execution_count="26">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>numerical_non_indicator_features <span class="op">=</span> df_features.loc[</span>
@@ -1656,7 +1656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    ascending<span class="op">=</span><span class="va">False</span></span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -1968,7 +1968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There is no universally accepted skewness threshold at which a transformation becomes necessary. In practice, values between 0.5 and 1.0 are commonly used as heuristics to identify features with substantial asymmetry.</p>
 <p>For this project, we use a threshold of <strong>0.75</strong>, which focuses the transformation on the most strongly right-skewed variables while avoiding unnecessary modifications to features whose distributions are only moderately skewed.</p>
 <p>A high skewness alone, however, is not sufficient to justify a logarithmic transformation. Only <strong>numerical, non-indicator</strong> features are considered, as applying a logarithm to binary variables provides little practical benefit. In addition, all values of a candidate feature must be greater than <strong>−1</strong>, ensuring that the <code>log1p</code> transformation is mathematically well-defined and avoiding undefined values such as ((0)). Only features satisfying all of these conditions are selected for transformation.</p>
-<div id="cell-58" class="cell" data-execution_count="86">
+<div id="cell-58" class="cell" data-execution_count="27">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conditions for log transformation</span></span>
@@ -1987,7 +1987,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>df_features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="86">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -2131,7 +2131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Although this process increases the number of features in the dataset, it allows machine learning models to make use of categorical information in a consistent and interpretable manner.</p>
 <p>The generated dummy variables are not tracked individually in the <code>df_features</code> metadata table, since they are implementation artifacts derived automatically from the original categorical features rather than new conceptual features created during feature engineering.</p>
 <p>We first identify the categorical features recorded in the metadata table and then apply one-hot encoding to the dataset.</p>
-<div id="cell-60" class="cell" data-execution_count="87">
+<div id="cell-60" class="cell" data-execution_count="28">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>categorical_features <span class="op">=</span> df_features.loc[</span>
@@ -2152,7 +2152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>At this stage, the dataset has undergone all planned preprocessing steps. Missing values have been handled, new features have been engineered, highly skewed numerical variables have been transformed where appropriate, and categorical features have been encoded into a numerical representation suitable for machine learning algorithms.</p>
 <p>To avoid repeating these preprocessing steps in the next notebook, we save both the processed dataset and the updated feature metadata table. This allows the modeling stage to focus exclusively on training, evaluating, and comparing regression models.</p>
 <p>The processed dataset now contains all information required for model development and can be loaded directly in the next notebook.</p>
-<div id="cell-62" class="cell" data-execution_count="88">
+<div id="cell-62" class="cell" data-execution_count="29">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save dataframes in parquet format to preserve data types</span></span>
@@ -2183,7 +2183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The resulting dataset incorporates both domain knowledge and preprocessing techniques designed to improve model performance and compatibility with machine learning algorithms. After these transformations, the dataset is fully numerical and suitable for a wide range of regression models.</p>
 <p>To facilitate the next stage of the project, we saved both the processed dataset and the updated feature metadata table. This allows the modeling notebook to focus exclusively on training, evaluating, and comparing models rather than repeating the preprocessing pipeline.</p>
-<p>In the <a href="../notebooks/03_modeling.html">next notebook</a>, we will use this transformed dataset to train and evaluate several regression models, compare their performance, and generate a Kaggle submission.</p>
+<p>In the <a href="../notebooks/03_modeling_and_evaluation.html">next notebook</a>, we will use this transformed dataset to train and evaluate several regression models, compare their performance, and generate a Kaggle submission.</p>
 
 
 </section>

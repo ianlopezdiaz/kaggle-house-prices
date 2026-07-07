@@ -301,16 +301,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../notebooks/01_eda.html">
- <span class="dropdown-text">01 - EDA</span></a>
+    <a class="dropdown-item" href="../notebooks/01_exploratory_data_analysis.html">
+ <span class="dropdown-text">01 - Exploratory Data Analysis (EDA)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/02_feature_engineering.html">
  <span class="dropdown-text">02 - Feature engineering</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/03_modeling.html">
- <span class="dropdown-text">03 - Modeling</span></a>
+    <a class="dropdown-item" href="../notebooks/03_modeling_and_evaluation.html">
+ <span class="dropdown-text">03 - Modeling and Evaluation</span></a>
   </li>  
     </ul>
   </li>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://ianlopezdiaz.github.io/portfolio"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/ianlopezdiaz/kaggle-house-prices"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -1028,42 +1028,42 @@ Number of features: 321</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-3.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-4.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-5.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-8-output-6.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-8-output-6.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1249,7 +1249,7 @@ RMSE Std  : 7591.835544518436</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1320,7 +1320,7 @@ RMSE Std  : 16150.79821051806</code></pre>
 <section id="effect-of-logarithmic-transformations" class="level3">
 <h3 class="anchored" data-anchor-id="effect-of-logarithmic-transformations">Effect of Logarithmic Transformations</h3>
 <p>Linear regression assumes a linear relationship between the predictors and the target, as well as approximately constant error variance. Strongly right-skewed variables can make these assumptions less appropriate by giving disproportionate influence to extreme observations.</p>
-<p>In the previous notebook, we identified a subset of numerical features with substantial positive skewness and prepared them for logarithmic transformation. We also observed that the target variable (<code>SalePrice</code>) is itself strongly right-skewed.</p>
+<p>In the <a href="../notebooks/02_feature_engineering.html">previous notebook</a>, we identified a subset of numerical features with substantial positive skewness and prepared them for logarithmic transformation. We also observed that the target variable (<code>SalePrice</code>) is itself strongly right-skewed.</p>
 <p>We now investigate whether these transformations improve predictive performance by evaluating two additional variants of the linear regression model:</p>
 <ul>
 <li><strong>Log:</strong> Uses logarithmically transformed features while keeping the original target.</li>
@@ -1505,8 +1505,8 @@ RMSE Mean : 30593.233223954412
 RMSE Std  : 7925.566053461749
 
 Model     : Random Forest (Log-Log)
-RMSE Mean : 29794.82687849538
-RMSE Std  : 6738.632614030029
+RMSE Mean : 29794.826878495347
+RMSE Std  : 6738.632614030009
 </code></pre>
 </div>
 </div>
@@ -1707,7 +1707,7 @@ RMSE Std  : 8099.118265230137
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1848,7 +1848,7 @@ RMSE Std  : 8099.118265230137
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1901,7 +1901,7 @@ RMSE Std  : 8099.118265230137
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1948,7 +1948,7 @@ RMSE Std  : 8099.118265230137
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_modeling_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="03_modeling_and_evaluation_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
