@@ -1,71 +1,126 @@
 # House Prices: End-to-End Regression Case Study
 
-This project demonstrates a complete machine learning workflow using the famous
-[Kaggle House Prices dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques).
-The objective is to predict residential property prices from structured tabular data
-while showcasing the techniques commonly used in real-world regression problems.
-Check the site [here](https://ianlopezdiaz.github.io/kaggle-house-prices).
+An end-to-end machine learning project based on the **Kaggle House Prices: Advanced Regression Techniques** competition.
 
-## About the competition 
-- [Overview](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview)
-- [About the data](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data)
+The project demonstrates a complete supervised regression workflow using structured tabular data, covering:
+
+- Exploratory data analysis (EDA)
+- Data cleaning
+- Feature engineering
+- Log transformation of skewed variables
+- Baseline models
+- Linear Regression
+- Random Forest
+- Gradient Boosting
+- Cross-validation and model comparison
+- Model interpretation
+- Kaggle submission generation
 
 ---
 
-# Getting started to do this locally
+## Documentation
 
-### Install requirements:
+The complete project documentation is available as a Quarto website:
+
+**[https://ianlopezdiaz.github.io/kaggle-house-prices](https://ianlopezdiaz.github.io/kaggle-house-prices)**
+
+The website contains:
+
+- Project overview
+- Interactive notebooks
+- Methodology
+- Results and discussion
+
+---
+
+## Dataset
+
+This project uses the **House Prices: Advanced Regression Techniques** dataset from Kaggle.
+
+Competition page:
+
+https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques
+
+For convenience and reproducibility, the original competition files are included in this repository under:
+
+```text
+data/raw/
+```
+
+The processed datasets generated throughout the workflow are stored in:
+
+```text
+data/processed/
+```
+
+---
+
+## Repository Structure
+
+```text
+kaggle-house-prices/
+│
+├── README.md
+├── index.qmd
+├── _quarto.yml
+├── environment.yml
+├── LICENSE
+|
+├── notebooks/
+|   |
+|   ├── 01_exploratory_data_analysis.ipynb
+|   ├── 02_feature_engineering.ipynb
+|   └── 03_modeling_and_evaluation.ipynb
+|
+├── data/
+|   |
+|   ├── raw/
+|   |   ├── data_description.txt
+|   |   ├── sample_submission.csv
+|   |   ├── test.csv
+|   |   └── train.csv
+|   |
+|   └── processed/
+|       ├── 01_data.parquet
+|       ├── 01_features.parquet
+|       ├── 02_data.parquet
+|       ├── 02_features.parquet
+|       └── submission.csv
+|
+└── _site/
+```
+
+---
+
+## Running the Project
+
+### Create the environment
+
+```bash
+conda env create -f environment.yml
+conda activate kaggle-house-prices
+```
+
+or
 
 ```bash
 pip install -r requirements.txt
 ```
 
-or, if you prefer
-
-### Clone my environment:
-
-```bash
-conda env create -f environment.yml
-```
-
-You can change `name` to anything you like in the `environment.yml` file
-if you already have an Anaconda/Miniconda environment with this name or
-you simply want to use a different name for whatever reason.
-
----
-
-# Build the site with Quarto
-
-### 1. Install [Quarto](https://quarto.org/) (if you haven't already done it)
-```bash
-pip install quarto-cli
-```
-
-After you have all requirements or environment up and running
-and can modify the project anyway you feel like and 
-to preview the site just do
+### Render the website
 
 ```bash
 quarto preview
 ```
 
-After you are finished just
+or
 
-### 2. Render the site locally
 ```bash
 quarto render
 ```
 
-### 3. Commit/Push
-```bash
-git add .
-git commit -m "some message"
-git push origin
-```
-
-### 4. Publish the site
-```bash
-quarto publish gh-pages
-```
-
 ---
+
+## License
+
+This project is released under the MIT License.
