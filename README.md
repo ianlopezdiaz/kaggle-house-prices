@@ -1,5 +1,7 @@
 # House Prices: End-to-End Regression Case Study
 
+> **Language:** 🇺🇸 English | 🇧🇷 [Português](https://github.com/ianlopezdiaz/kaggle-house-prices-pt)
+
 An end-to-end machine learning project based on the **Kaggle House Prices: Advanced Regression Techniques** competition.
 
 The project demonstrates a complete supervised regression workflow using structured tabular data, covering:

@@ -19,6 +19,8 @@ website:
           - href: notebooks/03_modeling_and_evaluation.ipynb
             text: "03 - Modeling and Evaluation"
     right:
+      - text: "🇧🇷 Português"
+        href: "https://ianlopezdiaz.github.io/kaggle-house-prices-pt"
       - text: Portfolio
         href: https://ianlopezdiaz.github.io/portfolio
       - icon: github
@@ -36,6 +38,3 @@ format:
     toc-depth: 3
     code-fold: show
     highlight-style: github
-
-
-
