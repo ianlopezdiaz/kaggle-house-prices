@@ -317,6 +317,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
+    <a class="nav-link" href="https://ianlopezdiaz.github.io/kaggle-house-prices-pt"> 
+<span class="menu-text">🇧🇷 Português</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="https://ianlopezdiaz.github.io/portfolio"> 
 <span class="menu-text">Portfolio</span></a>
   </li>  
@@ -396,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="import-libraries">Import libraries</h2>
 <p>First, import the libraries used throughout the analysis.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="79">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
@@ -413,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
 <p>The competition provides separate training and test datasets. The training dataset contains the target variable (<code>SalePrice</code>), while the test dataset contains only the predictor variables.</p>
 <p>We load both datasets, inspect their dimensions, check for duplicated rows, check column names etc.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="80">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/test.csv"</span>)</span>
@@ -467,12 +471,12 @@ Target variable (only in test):
 </code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-execution_count="81">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_train.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 
 
@@ -631,12 +635,12 @@ Target variable (only in test):
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-execution_count="82">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_test.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="82">
 <div>
 
 
@@ -800,7 +804,7 @@ Target variable (only in test):
 <h2 class="anchored" data-anchor-id="understanding-the-target-variable">Understanding the target variable</h2>
 <p>Apart from the <code>SalePrice</code> column, which is missing from the <code>df_test</code> dataset, the other columns are all the same. The sale price is, of course, our target variable, i.e., the thing we will have to create a model to find out base on the other features.</p>
 <p>Because this is a regression problem, the target variable deserves special attention. Let’s inspect the distribution of house prices.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-execution_count="83">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
@@ -816,7 +820,7 @@ Target variable (only in test):
 </div>
 </div>
 <p>As seen on the histogram above, the target feature <code>SalePrice</code> is right-skewed. In such cases, it is useful to perform a log transformation on this feature. After this transformation, the distribution closer resembles a normal distribution.</p>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="84">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram log</span></span>
@@ -833,7 +837,7 @@ Target variable (only in test):
 </div>
 </div>
 <p>It is also useful to check for outliers in the house prices.</p>
-<div id="cell-12" class="cell" data-execution_count="7">
+<div id="cell-12" class="cell" data-execution_count="85">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
@@ -854,9 +858,9 @@ Target variable (only in test):
 </section>
 <section id="mapping-the-features" class="level2">
 <h2 class="anchored" data-anchor-id="mapping-the-features">Mapping the features</h2>
-<p>The file <a href="data/data_description.txt"><code>data_description.txt</code></a> documents all variables in the dataset. In this section, we extract those descriptions and combine them with information derived from <code>df_train</code> and <code>df_test</code> (such as data type: numerical or categorical) into a single summary dataframe.</p>
+<p>The file <a href="../data/raw/data_description.txt"><code>data_description.txt</code></a> documents all variables in the dataset. In this section, we extract those descriptions and combine them with information derived from <code>df_train</code> and <code>df_test</code> (such as data type: numerical or categorical) into a single summary dataframe.</p>
 <p>We also introduce a <code>Category</code> field: it is set to <code>"original"</code> for all features that come directly from the Kaggle dataset, and later will assume other values for features created during the feature engineering stage.</p>
-<div id="cell-15" class="cell" data-execution_count="8">
+<div id="cell-15" class="cell" data-execution_count="86">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features minus the tareget</span></span>
@@ -890,7 +894,7 @@ Target variable (only in test):
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>df_features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="86">
 <div>
 
 
@@ -1006,7 +1010,7 @@ Target variable (only in test):
 <h2 class="anchored" data-anchor-id="combining-train-and-test-data">Combining train and test data</h2>
 <p>Many preprocessing steps must be applied consistently to both datasets. For exploratory purposes, it is therefore useful to temporarily combine the predictor variables from the training and test sets into a single dataframe.</p>
 <p>The target variable (<code>SalePrice</code>) is excluded because it is only available in the training data.</p>
-<div id="cell-17" class="cell" data-execution_count="9">
+<div id="cell-17" class="cell" data-execution_count="87">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train/Test split</span></span>
@@ -1040,7 +1044,7 @@ Target variable (only in test):
     82 columns
     </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="87">
 <div>
 
 
@@ -1343,8 +1347,8 @@ Target variable (only in test):
 </div>
 </div>
 </div>
-<p>In order to start getting a feel for the data we have in our hands, we can use <code>info()</code> and <code>describe()</code> to learn about data types, missing data, and overall statistical metrics such as mean, median, max, min etc. While trying to understand the data, it is also very helpful to look at the <a href="data/data_description.txt"><code>data_description.txt</code></a> file in the <code>data</code> directory of this repository.</p>
-<div id="cell-19" class="cell" data-execution_count="10">
+<p>In order to start getting a feel for the data we have in our hands, we can use <code>info()</code> and <code>describe()</code> to learn about data types, missing data, and overall statistical metrics such as mean, median, max, min etc. While trying to understand the data, it is also very helpful to look at the <a href="../data/raw/data_description.txt"><code>data_description.txt</code></a> file in the <code>data</code> directory of this repository.</p>
+<div id="cell-19" class="cell" data-execution_count="88">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data types and Non-null counts</span></span>
@@ -1442,13 +1446,13 @@ dtypes: bool(1), float64(12), int64(26), object(43)
 memory usage: 1.8+ MB</code></pre>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="11">
+<div id="cell-20" class="cell" data-execution_count="89">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_full.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="89">
 <div>
 
 
@@ -1679,7 +1683,7 @@ memory usage: 1.8+ MB</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="12">
+<div id="cell-21" class="cell" data-execution_count="90">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerical features from metadata</span></span>
@@ -1709,7 +1713,7 @@ memory usage: 1.8+ MB</code></pre>
 <section id="histograms" class="level2">
 <h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
 <p>As we did for the target variable, we can also look at the distributions for all numerical features.</p>
-<div id="cell-23" class="cell" data-execution_count="13">
+<div id="cell-23" class="cell" data-execution_count="91">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms for all numerical features</span></span>
@@ -1743,7 +1747,7 @@ memory usage: 1.8+ MB</code></pre>
 <section id="outliers" class="level2">
 <h2 class="anchored" data-anchor-id="outliers">Outliers</h2>
 <p>As we did for <code>SalePrice</code>, we can check all numerical data for outliers.</p>
-<div id="cell-26" class="cell" data-execution_count="14">
+<div id="cell-26" class="cell" data-execution_count="92">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots for all features</span></span>
@@ -1778,7 +1782,7 @@ memory usage: 1.8+ MB</code></pre>
 <section id="missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values">Missing Values</h2>
 <p>Missing data is one of the main challenges in this dataset. I always like to visually inspect how much of the data is missing before proceeding with the analysis.</p>
-<div id="cell-29" class="cell" data-execution_count="15">
+<div id="cell-29" class="cell" data-execution_count="93">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">6</span>))</span>
@@ -1804,13 +1808,13 @@ memory usage: 1.8+ MB</code></pre>
 </div>
 </div>
 <p>Before deciding how to handle missing values, we first need to understand which features contain missing observations, how many values are missing, and whether missing values may carry information themselves.</p>
-<p>We will evaluate each feature individually to determine the best imputation strategy, using <a href="data/data_description.txt"><code>data_description.txt</code></a> to guide our decisions:</p>
+<p>We will evaluate each feature individually to determine the best imputation strategy, using <a href="../data/raw/data_description.txt"><code>data_description.txt</code></a> to guide our decisions:</p>
 <ul>
 <li><strong>For numerical features:</strong> We will fill missing data with <code>0</code> (where it represents “None”), the mean, or the median/mode, depending on the distribution.</li>
 <li><strong>For categorical features:</strong> We will impute missing data with <code>"None"</code> if it represents a missing attribute (e.g., no pool, no garage), or the mode if the data is truly missing at random.</li>
 </ul>
 <p>Let’s start by listing all features in descending order by the amount of missing values.</p>
-<div id="cell-31" class="cell" data-execution_count="16">
+<div id="cell-31" class="cell" data-execution_count="94">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All features with missing values</span></span>
@@ -1818,7 +1822,7 @@ memory usage: 1.8+ MB</code></pre>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_missing <span class="op">=</span> df_missing.loc[df_missing.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>df_missing</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>PoolQC          2909
 MiscFeature     2814
 Alley           2721
@@ -1859,7 +1863,7 @@ dtype: int64</code></pre>
 <p>It will be usefull to separate the categorical from the numerical data.</p>
 <section id="categorical-features" class="level3">
 <h3 class="anchored" data-anchor-id="categorical-features">Categorical features</h3>
-<div id="cell-34" class="cell" data-execution_count="17">
+<div id="cell-34" class="cell" data-execution_count="95">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only categorical features</span></span>
@@ -1867,7 +1871,7 @@ dtype: int64</code></pre>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_missing_categorical <span class="op">=</span> df_missing_categorical.loc[df_missing_categorical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>df_missing_categorical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="95">
 <pre><code>PoolQC          2909
 MiscFeature     2814
 Alley           2721
@@ -1894,7 +1898,7 @@ Electrical         1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-35" class="cell" data-execution_count="18">
+<div id="cell-35" class="cell" data-execution_count="96">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
@@ -2126,14 +2130,14 @@ Name: count, dtype: int64
 ------------------------------</code></pre>
 </div>
 </div>
-<p>As we see, almost all of the data in <code>PoolQC</code> are missing. And from we see this refers to “Pool Quality”. This means most of the houses do not have a pool. This missing value actually carries helpfull information. The same happens for all the categorical features for which the <a href="data/data_description.txt"><code>data_description.txt</code></a> file say that <code>NA</code> stands for “None” or “This house does not have this item”. For features of this type we fill <code>NA</code> values with the <code>str</code> value “None”.</p>
+<p>As we see, almost all of the data in <code>PoolQC</code> are missing. And from we see this refers to “Pool Quality”. This means most of the houses do not have a pool. This missing value actually carries helpfull information. The same happens for all the categorical features for which the <a href="../data/raw/data_description.txt"><code>data_description.txt</code></a> file say that <code>NA</code> stands for “None” or “This house does not have this item”. For features of this type we fill <code>NA</code> values with the <code>str</code> value “None”.</p>
 <p>Some features contain only a handful of missing values and exhibit a strongly dominant category. For example, most observations in <code>SaleType</code> are labeled <code>"WD"</code>. For these variables, missing values are replaced with the mode. The mode is computed from the training data and subsequently applied to both datasets to ensure a consistent preprocessing procedure while avoiding information leakage.</p>
 <p>For example,</p>
 <ul>
 <li><code>Exterior1st</code>: Exterior covering on house. It’s reasonable to think all houses have at some kind of exterior covering. So, for the first material we fill the only missing value with the mode which is Vinyl Siding.</li>
 <li><code>Exterior2nd</code>: Exterior covering on house (if more than one material). As it is possible that there is no second material for the exterior covering, we fill the only missing value with “None”.</li>
 </ul>
-<div id="cell-37" class="cell" data-execution_count="19">
+<div id="cell-37" class="cell" data-execution_count="97">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill with "None"</span></span>
@@ -2176,7 +2180,7 @@ Name: count, dtype: int64
 </section>
 <section id="numerical-features" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-features">Numerical features</h3>
-<div id="cell-39" class="cell" data-execution_count="20">
+<div id="cell-39" class="cell" data-execution_count="98">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only numerical features</span></span>
@@ -2184,7 +2188,7 @@ Name: count, dtype: int64
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df_missing_numerical <span class="op">=</span> df_missing_numerical.loc[df_missing_numerical.values <span class="op">&gt;</span> <span class="dv">0</span>]</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>df_missing_numerical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="98">
 <pre><code>LotFrontage     486
 GarageYrBlt     159
 MasVnrArea       23
@@ -2199,7 +2203,7 @@ BsmtUnfSF         1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-40" class="cell" data-execution_count="21">
+<div id="cell-40" class="cell" data-execution_count="99">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique values and value counts</span></span>
@@ -2352,7 +2356,7 @@ Name: count, Length: 1136, dtype: int64
 <p>Most numerical features with missing values describe optional property characteristics, such as basements, garages, or masonry veneer. In these cases, a missing value generally indicates the absence of the corresponding feature, making <code>0</code> a meaningful replacement.</p>
 <p>Two variables deserve special attention: <code>LotFrontage</code> and <code>GarageYrBlt</code>. For <code>LotFrontage</code>, a missing value does not imply zero street frontage. Likewise, <code>GarageYrBlt</code> is missing when a garage is absent rather than because the construction year is zero. More sophisticated imputation strategies could therefore be justified for these variables.</p>
 <p>However, the number of missing values is relatively small compared to the size of the dataset, and many of the affected variables naturally admit a value of <code>0</code>. To keep the preprocessing pipeline simple and consistent, we will replace all remaining numerical missing values with <code>0</code>.</p>
-<div id="cell-42" class="cell" data-execution_count="22">
+<div id="cell-42" class="cell" data-execution_count="100">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing values with 0</span></span>
@@ -2361,7 +2365,7 @@ Name: count, Length: 1136, dtype: int64
 </details>
 </div>
 <p>Inspecting the value counts also revealed a likely data entry error. The variable <code>GarageYrBlt</code> contains a value of <code>2207</code>, which is clearly implausible given the context of the dataset. Since this year differs from <code>2007</code> by only a single digit and all other observations fall within a realistic range of construction years, we treat it as a typo and replace it with <code>2007</code>, which appears to be the most likely intended value.</p>
-<div id="cell-44" class="cell" data-execution_count="23">
+<div id="cell-44" class="cell" data-execution_count="101">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_full[<span class="st">"GarageYrBlt"</span>] <span class="op">=</span> df_full[<span class="st">"GarageYrBlt"</span>].replace(<span class="dv">2207</span>, <span class="dv">2007</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2373,7 +2377,7 @@ Name: count, Length: 1136, dtype: int64
 <h2 class="anchored" data-anchor-id="numerical-features-and-the-target-variable">Numerical features and the target variable</h2>
 <p>One of the main objectives of exploratory data analysis is to identify which features appear to be related to the target variable. For numerical features, a simple way to do this is through scatterplots.</p>
 <p>The plots below compare each numerical feature against <code>SalePrice</code>. While these visualizations do not provide a quantitative measure of association, they can reveal trends, outliers, nonlinear relationships, and other patterns that may be useful for subsequent modeling and feature engineering.</p>
-<div id="cell-46" class="cell" data-execution_count="24">
+<div id="cell-46" class="cell" data-execution_count="102">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-split train/test sets:</span></span>
@@ -2428,7 +2432,7 @@ Name: count, Length: 1136, dtype: int64
 <p>The scatterplots provide a qualitative view of the relationship between individual features and the target variable. We can complement this analysis by computing the correlation matrix for the numerical features.</p>
 <p>The correlation coefficient measures the strength and direction of a linear relationship between two variables. Values close to <code>1</code> indicate a strong positive association, values close to <code>-1</code> indicate a strong negative association, and values near <code>0</code> suggest little or no linear relationship.</p>
 <p>The heatmap below highlights both the features most strongly associated with <code>SalePrice</code> and potential correlations between predictors that may indicate redundancy or multicollinearity.</p>
-<div id="cell-48" class="cell" data-execution_count="25">
+<div id="cell-48" class="cell" data-execution_count="103">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_train.select_dtypes(include<span class="op">=</span><span class="st">"number"</span>).corr()</span>
@@ -2461,7 +2465,7 @@ Name: count, Length: 1136, dtype: int64
 <h2 class="anchored" data-anchor-id="save-the-processed-dataset">Save the processed dataset</h2>
 <p>At this stage, all identified data quality issues and missing values have been addressed. To avoid repeating these preprocessing steps in subsequent notebooks, we save the resulting dataset to disk.</p>
 <p>The following notebook will build upon this dataset to perform feature engineering and prepare the data for machine learning models.</p>
-<div id="cell-51" class="cell" data-execution_count="26">
+<div id="cell-51" class="cell" data-execution_count="104">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save dataframes in parquet format to preserve data types</span></span>
